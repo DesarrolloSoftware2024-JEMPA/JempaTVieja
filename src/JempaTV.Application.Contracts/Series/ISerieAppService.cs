@@ -12,5 +12,6 @@ namespace JempaTV.Series
     {
         Task<ICollection<SerieDto>> SearchAsync(string title, string gender);
 
+        Task PersistSeriesAsync(string title, string gender);
     }
 }

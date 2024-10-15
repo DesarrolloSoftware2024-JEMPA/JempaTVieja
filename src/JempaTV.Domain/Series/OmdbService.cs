@@ -15,7 +15,7 @@ namespace JempaTV.Series
 
         private static readonly string apiKey = "b059b513";
         private static readonly string omdbUrl = "http://www.omdbapi.com/";
-        private int id = 0;
+        private int id = 0; // OMDBAPI PROPORCIONA ID
 
         public async Task<ICollection<SerieDto>> GetSeriesAsync(string title, string gender)
         {
