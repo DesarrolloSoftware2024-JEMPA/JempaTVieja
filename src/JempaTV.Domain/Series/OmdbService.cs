@@ -15,14 +15,13 @@ namespace JempaTV.Series
 
         private static readonly string apiKey = "b059b513";
         private static readonly string omdbUrl = "http://www.omdbapi.com/";
-        private int id = 0; // OMDBAPI PROPORCIONA ID
 
-        public async Task<ICollection<SerieDto>> GetSeriesAsync(string title, string gender)
+        public async Task<ICollection<SerieDto>> GetSeriesAsync(string title)
         {
 
             try
             {
-                using HttpClient client = new HttpClient();
+                using HttpClient client = new();
 
                 //Formamos la url con los datos
                 string url = $"{omdbUrl}?s={title}&apikey={apiKey}&type=series";
@@ -37,15 +36,23 @@ namespace JempaTV.Series
                 var searchResponse = JsonConvert.DeserializeObject<SearchResponse>(jsonResponse);
 
                 //Finalmente obtenemos la lista de series similares
-                var omdbSeriesList = searchResponse?.List ?? new List<omdbSerie>();
+                var omdbSeriesList = searchResponse?.List ?? new List<OmdbSerie>();
 
                 var matchedSeries = new List<SerieDto>();
 
                 foreach (var serie in omdbSeriesList)
                 {
-                    //Asignacion de Ids
-                    id = id + 1;
-                    matchedSeries.Add(new SerieDto { Title = serie.Title, Id = id });
+                    
+                    matchedSeries.Add(new SerieDto 
+                    { 
+                        Title = serie.Title,
+                        ImdbID = serie.ImdbID, 
+                        Actors = serie.Actors,
+                        Director = serie.Director,
+                        Year = serie.Year,
+                        Plot = serie.Plot,
+                        Poster = serie.Poster
+                    });
                 }
 
                 return matchedSeries; 
@@ -61,16 +68,18 @@ namespace JempaTV.Series
         private class SearchResponse
         {
             [JsonProperty("Search")]
-            public List<omdbSerie> List { get; set; }
+            public List<OmdbSerie> List { get; set; }
         }
 
-        private class omdbSerie
+        private class OmdbSerie
         {
+            public string ImdbID { get; set; }
             public string Title { get; set; }
             public string Year { get; set; }
             public string Director { get; set; }
             public string Actors { get; set; }
             public string Plot { get; set; }
+            public string Poster {  get; set; }
         }
 
     }

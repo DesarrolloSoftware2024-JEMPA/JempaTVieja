@@ -98,6 +98,7 @@ public class JempaTVDbContext :
             b.ToTable(JempaTVConsts.DbTablePrefix + "Series", JempaTVConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
             b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+            b.Property(x => x.ImdbID).IsRequired();
         });
 
         builder.Entity<WatchList>(b =>

@@ -8,7 +8,7 @@ namespace JempaTV.Series
 {
     public interface ISerieApiService
     {
-        Task<ICollection<SerieDto>> GetSeriesAsync(string title, string gender);
+        Task<ICollection<SerieDto>> GetSeriesAsync(string title);
 
         
     }

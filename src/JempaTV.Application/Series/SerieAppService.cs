@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scriban.Syntax;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,19 +20,28 @@ namespace JempaTV.Series
             _seriesRepository = repository;
         }
 
-        public async Task<ICollection<SerieDto>> SearchAsync(string title, string gender)
+        public async Task<ICollection<SerieDto>> SearchAsync(string title)
         {
-            return await _seriesApiService.GetSeriesAsync(title, gender);
+            return await _seriesApiService.GetSeriesAsync(title);
         }
 
-        public async Task PersistSeriesAsync(string title, string gender)
+        public async Task PersistSeriesAsync(string title)
         {
-            var matchedSeries = await _seriesApiService.GetSeriesAsync(title, gender);
+            var matchedSeries = await _seriesApiService.GetSeriesAsync(title);
 
             var listSeries = new List<Serie>();
 
-            foreach (var series in matchedSeries) {
-                listSeries.Add(new Serie { Title = series.Title });
+            foreach (var serie in matchedSeries) {
+                listSeries.Add(new Serie
+                { 
+                    Title = serie.Title,
+                    ImdbID = serie.ImdbID,
+                    Actors = serie.Actors,
+                    Director = serie.Director,
+                    Year = serie.Year,
+                    Plot = serie.Plot,
+                    Poster = serie.Poster,
+                });
             }
 
             await _seriesRepository.InsertManyAsync(listSeries);
