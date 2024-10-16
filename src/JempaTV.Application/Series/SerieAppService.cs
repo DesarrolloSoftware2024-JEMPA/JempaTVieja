@@ -32,15 +32,16 @@ namespace JempaTV.Series
             var listSeries = new List<Serie>();
 
             foreach (var serie in matchedSeries) {
-                listSeries.Add(new Serie
-                { 
+                listSeries.Add(new Serie()
+                {
                     Title = serie.Title,
                     ImdbID = serie.ImdbID,
                     Actors = serie.Actors,
                     Director = serie.Director,
                     Year = serie.Year,
                     Plot = serie.Plot,
-                    Poster = serie.Poster,
+                    Poster = serie.Poster
+
                 });
             }
 

@@ -10,6 +10,5 @@ namespace JempaTV.Series
     {
         Task<ICollection<SerieDto>> GetSeriesAsync(string title);
 
-        
     }
 }

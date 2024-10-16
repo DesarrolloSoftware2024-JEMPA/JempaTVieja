@@ -15,6 +15,7 @@ namespace JempaTV.Series
 
         private static readonly string apiKey = "b059b513";
         private static readonly string omdbUrl = "http://www.omdbapi.com/";
+        private int Id = 0;
 
         public async Task<ICollection<SerieDto>> GetSeriesAsync(string title)
         {
@@ -42,9 +43,10 @@ namespace JempaTV.Series
 
                 foreach (var serie in omdbSeriesList)
                 {
-                    
+                    Id = Id + 1;
                     matchedSeries.Add(new SerieDto 
                     { 
+                        Id = Id,
                         Title = serie.Title,
                         ImdbID = serie.ImdbID, 
                         Actors = serie.Actors,
