@@ -14,5 +14,7 @@ namespace JempaTV.Notifications
         public string content { get; set; }
 
         public string type { get; set; }
+
+        public bool read { get; set; }
     }
 }
