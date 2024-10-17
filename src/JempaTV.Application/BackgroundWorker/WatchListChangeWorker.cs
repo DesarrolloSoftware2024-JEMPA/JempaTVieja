@@ -71,12 +71,13 @@ namespace JempaTV.BackgroundWorker
                 var notif = new NotificationDto
                 {
                     Id = watchlist.Id,
-                    title = "Hay novedades para ti!",
-                    content = "Nuevos episodios o temporadas para las Series que quieres ver, ve a tu WatchList!"
-
+                    Title = "Hay novedades para ti!",
+                    Content = "Nuevos episodios o temporadas para las Series que quieres ver, ve a tu WatchList!",
+                    Type = "Email",
+                    Read = false
                 };
 
-                 await _notificationAppService.SendNotification(notif, watchlist.User);
+                 await _notificationAppService.SendNotification(notif, "8802F6C4-043C-8EC2-6B82-3A15AE64EEF4");
 
             }
 
