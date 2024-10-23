@@ -20,6 +20,8 @@ namespace JempaTV.Califications
 
         public async Task AddCalificationAsync(CalificationDto calification)
         {
+            var T = new Calification() { idUsuario = calification.idUsuario, idSerie = calification.idSerie, valor = calification.valor};
+            await _CalificationRepository.InsertAsync(T);
             
         }
     }
