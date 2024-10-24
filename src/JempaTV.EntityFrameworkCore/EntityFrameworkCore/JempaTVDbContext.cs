@@ -111,7 +111,7 @@ public class JempaTVDbContext :
 
         builder.Entity<Calification>(b =>
         {
-            b.ToTable(JempaTVConsts.DbTablePrefix + "Calification", JempaTVConsts.DbSchema);
+            b.ToTable(JempaTVConsts.DbTablePrefix + "Califications", JempaTVConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
             b.Property(x => x.valor).IsRequired();
             b.Property(x => x.idSerie).IsRequired();

@@ -4,6 +4,7 @@ using JempaTV.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace JempaTV.Migrations
 {
     [DbContext(typeof(JempaTVDbContext))]
-    partial class JempaTVDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241023221722_add-calification")]
+    partial class addcalification
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,16 +54,15 @@ namespace JempaTV.Migrations
                     b.Property<int>("idSerie")
                         .HasColumnType("int");
 
-                    b.Property<string>("idUsuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("idUsuario")
+                        .HasColumnType("int");
 
                     b.Property<int>("valor")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppCalifications", (string)null);
+                    b.ToTable("AppCalification", (string)null);
                 });
 
             modelBuilder.Entity("JempaTV.Series.Serie", b =>

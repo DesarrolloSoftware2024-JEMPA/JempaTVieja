@@ -18,10 +18,22 @@ namespace JempaTV.Califications
             _CalificationRepository = repository;
         }
 
+
+
+        public async Task<List<Calification>> GetCalificationsAsync(string idUsuario)
+        {
+            var result = await _CalificationRepository.GetListAsync(c => c.idUsuario == idUsuario);
+            return result;
+        }
+
         public async Task AddCalificationAsync(CalificationDto calification)
         {
-            var T = new Calification() { idUsuario = calification.idUsuario, idSerie = calification.idSerie, valor = calification.valor};
-            await _CalificationRepository.InsertAsync(T);
+            
+            await _CalificationRepository.InsertAsync(new Calification() 
+            {   idUsuario = calification.idUsuario,
+                idSerie = calification.idSerie,
+                valor = calification.valor,
+                comentario = calification.comentario });
             
         }
     }
