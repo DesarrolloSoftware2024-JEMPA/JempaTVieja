@@ -12,6 +12,6 @@ namespace JempaTV.Series
     {
         public string Title { get; set; }
 
-        public List<Calification>? Califications { get; set;}
+        public Calification? Calification { get; set;}
     }
 }

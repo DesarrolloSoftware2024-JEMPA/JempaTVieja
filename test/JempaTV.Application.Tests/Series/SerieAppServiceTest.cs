@@ -1,4 +1,5 @@
-﻿using Shouldly;
+﻿using JempaTV.Califications;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,13 +25,14 @@ namespace JempaTV.Series
         public async Task Should_Get_List_Of_Califications()
         {
             //Arrange
-            int Usuario = 9324823;
+            Guid Usuario = Guid.Parse("8802F6C4-043C-8EC2-6B82-3A15AE64EEF4");
 
             //Act
+            
             var result = await _serieAppService.GetCalificationsAsync(Usuario);
 
             //Assert
-            result.ShouldContain(c => c.IdUsuario == Usuario);
+            result.ShouldNotBeNull();
         }
     }
 }

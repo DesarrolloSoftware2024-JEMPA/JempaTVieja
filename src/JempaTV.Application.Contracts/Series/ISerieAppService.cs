@@ -13,9 +13,9 @@ namespace JempaTV.Series
     {
         Task<ICollection<SerieDto>> SearchAsync(string title, string gender);
 
-        Task<List<CalificationDto>> GetCalificationsAsync(int IdWachlist);
+        Task<List<CalificationDto>> GetCalificationsAsync(Guid IdUsuario);
 
-        Task AddCalificationAsync(CalificationDto calification);
+        Task AddCalificationAsync(CalificationDto calification, Guid IdUsuario);
 
 
     }

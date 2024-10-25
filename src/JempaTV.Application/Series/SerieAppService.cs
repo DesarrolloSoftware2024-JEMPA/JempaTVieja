@@ -30,24 +30,18 @@ namespace JempaTV.Series
         }
 
 
-        public async Task<List<CalificationDto>> GetCalificationsAsync(int IdWachlist)
+        public async Task<List<CalificationDto>> GetCalificationsAsync(Guid IdUsuario)
         {
             var calificationList = new List<CalificationDto>();
             try
             {
-                var watchlist = await _watchlistRepository.GetAsync(IdWachlist);
+                var watchlist = await _watchlistRepository.GetAsync(w => w.IdUsuario == IdUsuario);
                 
                 foreach (var serie in watchlist.Series)
                 {
-                    if (serie.Califications != null)
+                    if (serie.Calification != null)
                     {
-                        foreach (var calification in serie.Califications)
-                        {
-                            if (calification.IdUsuario == IdWachlist)
-                            {
-                                calificationList.Add(ObjectMapper.Map<Calification, CalificationDto>(calification));
-                            }
-                        }
+                        calificationList.Add(ObjectMapper.Map<Calification, CalificationDto>(serie.Calification));      
                     }
                 }
 
@@ -59,18 +53,18 @@ namespace JempaTV.Series
             return calificationList;
         }
 
-        public async Task AddCalificationAsync(CalificationDto calification)
+        public async Task AddCalificationAsync(CalificationDto calification, Guid IdUsuario)
         {
             var serie = await _serieRepository.GetAsync(calification.IdSerie);
 
-            var userWatchlist = await _watchlistRepository.GetAsync(calification.IdUsuario);
+            var userWatchlist = await _watchlistRepository.GetAsync(w => w.IdUsuario == IdUsuario);
 
-            if (serie != null & userWatchlist != null)
+            if (serie != null && userWatchlist != null)
             {
 
                 if (userWatchlist.Series.Contains(serie))
                 {
-                    serie.Califications?.Add(ObjectMapper.Map<CalificationDto, Calification>(calification));
+                    serie.Calification = (ObjectMapper.Map<CalificationDto, Calification>(calification));
                     await _serieRepository.UpdateAsync(serie);
                 }
 
