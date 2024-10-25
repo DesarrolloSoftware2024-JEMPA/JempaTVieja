@@ -20,20 +20,32 @@ namespace JempaTV.Califications
 
 
 
-        public async Task<List<Calification>> GetCalificationsAsync(string idUsuario)
+        public async Task<List<CalificationDto>> GetCalificationsAsync(string IdUsuario)
         {
-            var result = await _CalificationRepository.GetListAsync(c => c.idUsuario == idUsuario);
-            return result;
+            var result = await _CalificationRepository.GetListAsync(c => c.IdUsuario == IdUsuario);
+            var calificationList = new List<CalificationDto>();
+            foreach (var item in result)
+            {
+                calificationList.Add(new CalificationDto()
+                {
+                    Id = item.Id,
+                    IdSerie = item.IdSerie,
+                    IdUsuario = item.IdUsuario,
+                    Valor = item.Valor,
+                    Comentario = item.Comentario,
+                });
+            }
+            return calificationList;
         }
 
         public async Task AddCalificationAsync(CalificationDto calification)
         {
             
             await _CalificationRepository.InsertAsync(new Calification() 
-            {   idUsuario = calification.idUsuario,
-                idSerie = calification.idSerie,
-                valor = calification.valor,
-                comentario = calification.comentario });
+            {   IdUsuario = calification.IdUsuario,
+                IdSerie = calification.IdSerie,
+                Valor = calification.Valor,
+                Comentario = calification.Comentario });
             
         }
     }

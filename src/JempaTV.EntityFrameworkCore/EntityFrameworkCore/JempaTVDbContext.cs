@@ -113,9 +113,9 @@ public class JempaTVDbContext :
         {
             b.ToTable(JempaTVConsts.DbTablePrefix + "Califications", JempaTVConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
-            b.Property(x => x.valor).IsRequired();
-            b.Property(x => x.idSerie).IsRequired();
-            b.Property(x => x.idUsuario).IsRequired();
+            b.Property(x => x.Valor).IsRequired();
+            b.Property(x => x.IdSerie).IsRequired();
+            b.Property(x => x.IdUsuario).IsRequired();
         });
     }
 }

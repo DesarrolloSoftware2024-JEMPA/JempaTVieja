@@ -32,7 +32,7 @@ namespace JempaTV.Califications
             var result = await _calificationAppService.GetCalificationsAsync(Usuario);
 
             //Assert
-            result.ShouldContain(b => b.idUsuario == Usuario);
+            result.ShouldContain(b => b.IdUsuario == Usuario);
         }
 
     }

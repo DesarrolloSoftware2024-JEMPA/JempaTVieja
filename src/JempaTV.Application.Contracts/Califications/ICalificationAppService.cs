@@ -11,5 +11,6 @@ namespace JempaTV.Califications
     public interface ICalificationAppService : ICrudAppService<CalificationDto, int>
     {
         Task AddCalificationAsync(CalificationDto calification);
+        Task<List<CalificationDto>> GetCalificationsAsync(string IdUsuario);
     }
 }
