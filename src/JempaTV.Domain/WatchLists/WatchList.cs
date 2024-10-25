@@ -12,6 +12,8 @@ namespace JempaTV.WatchLists
     {
         public List<Serie> Series { get; set; }
 
+        public int IdUsuario { get; set; }
+
         public WatchList()
         {
             Series = new List<Serie>();

@@ -34,7 +34,6 @@ public class JempaTVDbContext :
 
     public DbSet<WatchList> WatchLists { get; set; }
 
-    public DbSet<Calification> Califications{ get; set; }
 
     #region Entities from the modules
 
@@ -107,15 +106,6 @@ public class JempaTVDbContext :
         {
             b.ToTable(JempaTVConsts.DbTablePrefix + "WatchLists", JempaTVConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
-        });
-
-        builder.Entity<Calification>(b =>
-        {
-            b.ToTable(JempaTVConsts.DbTablePrefix + "Califications", JempaTVConsts.DbSchema);
-            b.ConfigureByConvention(); //auto configure for the base class props
-            b.Property(x => x.Valor).IsRequired();
-            b.Property(x => x.IdSerie).IsRequired();
-            b.Property(x => x.IdUsuario).IsRequired();
         });
     }
 }

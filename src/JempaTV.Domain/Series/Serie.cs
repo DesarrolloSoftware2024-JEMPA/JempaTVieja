@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JempaTV.Califications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,7 @@ namespace JempaTV.Series
     public class Serie : AggregateRoot<int>
     {
         public string Title { get; set; }
+
+        public List<Calification>? Califications { get; set;}
     }
 }
