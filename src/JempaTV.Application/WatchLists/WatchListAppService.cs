@@ -30,6 +30,7 @@ namespace JempaTV.WatchLists
             try
             {
                 //Podriamos modificar la funcion para que reciba como parametro el IdUsuario en vez de watchlistId.
+
                 var watchlist = ((List<WatchList>)await _watchListRepository.GetListAsync()).FirstOrDefault();
 
                 if (watchlist == null)
@@ -38,7 +39,7 @@ namespace JempaTV.WatchLists
                     await _watchListRepository.InsertAsync(watchlist);
                 }
 
-                var serie = await _serieRepository.GetAsync(serieId); // Podriamos sacar esto y solo hacer el control de que exista
+                var serie = await _serieRepository.GetAsync(serieId);
                 watchlist.Series?.Add(serie);
                 await _watchListRepository.UpdateAsync(watchlist);
             }
@@ -55,7 +56,7 @@ namespace JempaTV.WatchLists
         {
             try
             {
-                //Hacer control de que exista usuario
+                
                 var watchlist = await _watchListRepository.FirstOrDefaultAsync(w => w.IdUsuario == IdUsuario);
 
                 if (watchlist?.Id == null)

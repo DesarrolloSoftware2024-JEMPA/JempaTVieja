@@ -52,11 +52,14 @@ namespace JempaTV.Series
 
                             var series = (await AsyncExecuter.ToListAsync(seriesQueryable)).FirstOrDefault(s=> s.Id == serie.Id);
 
-                            calificationList.Add(_mapper.Map<CalificationDto>(series?.Calification));   
+                            if (series?.Calification != null)
+                            {
+                            calificationList.Add(_mapper.Map<CalificationDto>(series?.Calification));
+                            }
+                              
                     }
 
                 }
-                Console.WriteLine();
 
                 return calificationList;
 
@@ -72,24 +75,58 @@ namespace JempaTV.Series
 
         public async Task AddCalificationAsync(CalificationDto calification, Guid IdUsuario)
         {
-            var serie = await _serieRepository.GetAsync(calification.IdSerie);
-
-            var userWatchlist = await _watchlistRepository.GetAsync(w => w.IdUsuario == IdUsuario);
-
-            if (serie != null && userWatchlist != null)
+            if (calification.Valor > 5 | calification.Valor < 0) 
             {
 
-                if (userWatchlist.Series.Contains(serie))
-                {
-                    
-                    var newCalification = (_mapper.Map<Calification>(calification));
-                    serie.Calification = newCalification;
-                    await _serieRepository.UpdateAsync(serie);
+               var serie = await _serieRepository.GetAsync(calification.IdSerie);
+            
+               var userWatchlist = await _watchlistRepository.GetAsync(w => w.IdUsuario == IdUsuario);
 
-                } // Manejar el else de que la serie no pertenece a la watchlist
+                if (serie != null && userWatchlist != null)
+                {
+
+                    if (userWatchlist.Series.Contains(serie))
+                    {
+
+                        var newCalification = (_mapper.Map<Calification>(calification));
+                        serie.Calification = newCalification;
+                        await _serieRepository.UpdateAsync(serie);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("La serie no se encuentra en la Watchlist de este usuario.");
+                    }
+                }
 
             }
+            else
+            {
+                Console.WriteLine("El valor de la calificacion no se encuentra entre 0 y 5");
+            }
 
+        }
+
+        public async Task EditCalificationAsync(int IdCalification, CalificationDto updateCalification, Guid IdUsuario)
+        {
+            var queryable1 = await _serieRepository.WithDetailsAsync(s => s.Calification);
+
+            var serie = (await AsyncExecuter.ToListAsync(queryable1)).FirstOrDefault(s => s.Id == updateCalification.IdSerie);
+
+            var queryable2 = await _watchlistRepository.WithDetailsAsync(w => w.Series);
+
+            var watchlist = (await AsyncExecuter.ToListAsync(queryable2)).FirstOrDefault(w => w.IdUsuario == IdUsuario);
+
+            if (watchlist.Series.Contains(serie))
+            {
+                var calification = _mapper.Map<Calification>(updateCalification);
+                serie.Calification = calification;
+                await _serieRepository.UpdateAsync(serie);
+            } 
+            else
+            {
+                Console.WriteLine("La serie no pertenece a la watchlist de este usuario");
+            }
         }
 
     }

@@ -16,7 +16,7 @@ namespace JempaTV.Series
     {
         private readonly SerieAppService _serieAppService;
 
-        protected SerieAppServiceTests()
+        public SerieAppServiceTests()
         {
             _serieAppService = GetRequiredService<SerieAppService>();
         }
@@ -29,10 +29,10 @@ namespace JempaTV.Series
 
             //Act
             
-            //var result = await _serieAppService.GetCalificationsAsync(Usuario);
+            var result = await _serieAppService.GetCalificationsAsync(Usuario);
 
             //Assert
-            //result.ShouldNotBeNull();
+            result.ShouldNotBeNull();
         }
     }
 }
