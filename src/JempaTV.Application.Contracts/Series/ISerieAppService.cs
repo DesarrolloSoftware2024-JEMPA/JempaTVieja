@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace JempaTV.Series
 {
-    public interface ISerieAppService : ICrudAppService<SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto, CreateUpdateSerieDto>
+    public interface ISerieAppService : ICrudAppService<SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto>
     {
         Task<ICollection<SerieDto>> SearchAsync(string title, string gender);
 

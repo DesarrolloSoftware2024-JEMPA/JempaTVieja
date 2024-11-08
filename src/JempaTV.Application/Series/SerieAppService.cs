@@ -9,7 +9,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace JempaTV.Series
 {
-    public class SerieAppService : CrudAppService<Serie, SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto, CreateUpdateSerieDto>, ISerieAppService
+    public class SerieAppService : CrudAppService<Serie, SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto>, ISerieAppService
     {
         private readonly ISerieApiService _seriesApiService;
         public SerieAppService(IRepository<Serie, int> repository, ISerieApiService seriesapiService) : base(repository)
