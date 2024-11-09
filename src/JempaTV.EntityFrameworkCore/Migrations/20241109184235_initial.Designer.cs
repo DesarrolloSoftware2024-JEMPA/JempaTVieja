@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace JempaTV.Migrations
 {
     [DbContext(typeof(JempaTVDbContext))]
-    [Migration("20241108120759_created-serie")]
-    partial class createdserie
+    [Migration("20241109184235_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,6 +58,9 @@ namespace JempaTV.Migrations
                     b.Property<string>("Genero")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Imdb")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("LastModification")
                         .HasColumnType("datetime2");

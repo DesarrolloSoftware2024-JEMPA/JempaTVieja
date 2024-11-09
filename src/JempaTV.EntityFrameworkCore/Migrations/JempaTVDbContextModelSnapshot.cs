@@ -56,6 +56,9 @@ namespace JempaTV.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float>("Imdb")
+                        .HasColumnType("real");
+
                     b.Property<DateTime>("LastModification")
                         .HasColumnType("datetime2");
 

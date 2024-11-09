@@ -433,6 +433,14 @@ namespace JempaTV.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModification = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Year = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Director = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Actors = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Plot = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Poster = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Imdb = table.Column<float>(type: "real", nullable: false),
                     ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
                 },

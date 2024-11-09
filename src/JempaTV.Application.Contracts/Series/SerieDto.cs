@@ -25,5 +25,7 @@ namespace JempaTV.Series
 
         public String Poster { get; set; }
 
+        public float Imdb { get; set; }
+
     }
 }

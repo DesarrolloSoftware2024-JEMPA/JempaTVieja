@@ -21,9 +21,11 @@ namespace JempaTV.Series
 
         public String Actors { get; set; }
 
-        public String Plot {  get; set; }
+        public String Plot { get; set; }
 
         public String Poster { get; set; }
+
+        public float Imdb {  get; set; }
 
     }
 }
