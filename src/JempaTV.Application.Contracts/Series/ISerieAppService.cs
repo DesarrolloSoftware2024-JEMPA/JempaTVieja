@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JempaTV.Califications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,13 @@ namespace JempaTV.Series
     public interface ISerieAppService : ICrudAppService<SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto, CreateUpdateSerieDto>
     {
         Task<ICollection<SerieDto>> SearchAsync(string title, string gender);
+
+        Task<List<CalificationDto>> GetCalificationsAsync(Guid IdUsuario);
+
+        Task AddCalificationAsync(CalificationDto calification, Guid IdUsuario);
+
+        Task EditCalificationAsync(int IdCalification, CalificationDto updateCalification, Guid IdUsuario);
+
 
     }
 }

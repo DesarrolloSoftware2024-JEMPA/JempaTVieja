@@ -9,9 +9,8 @@ namespace JempaTV.Califications
 {
     public class CalificationDto : EntityDto<int>
     {
-        public int idUsuario { get; set; }
-        public int idSerie { get; set; }
-        public int valor { get; set; }
-        public string comentario { get; set; }
+        public required int IdSerie { get; set; }
+        public required int Valor { get; set; }
+        public string? Comentario { get; set; }
     }
 }   
