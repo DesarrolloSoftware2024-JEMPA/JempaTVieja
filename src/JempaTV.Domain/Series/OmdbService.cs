@@ -25,13 +25,15 @@ namespace JempaTV.Series
                 using HttpClient client = new HttpClient();
 
                 //Formamos la url con los datos
-                string url = $"{omdbUrl}?s={title}&apikey={apiKey}&type=series";
+                string url = $"{omdbUrl}?t={title}&apikey={apiKey}&type=series";
 
                 //Obtenemos la respuesta de forma asincrona
                 var response = await client.GetAsync(url);
 
                 //Pasamos la respuesta a un JSON
                 string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                Console.WriteLine(jsonResponse);
 
                 //Deserializamos el JSON a un Objeto
                 var searchResponse = JsonConvert.DeserializeObject<SearchResponse>(jsonResponse);
@@ -45,7 +47,17 @@ namespace JempaTV.Series
                 {
                     //Asignacion de Ids
                     id = id + 1;
-                    matchedSeries.Add(new SerieDto { Title = serie.Title, Id = id });
+                    matchedSeries.Add(new SerieDto { 
+                        Title = serie.Title, 
+                        Id = id,
+                        Year = serie.Year,
+                        Genre = serie.Genre,
+                        Runtime = serie.Runtime,
+                        Writer = serie.Writer,
+                        Poster = serie.Poster,
+                        Country = serie.Country,
+                        ImdbRating = serie.imdbRating
+                    });
                 }
 
                 return matchedSeries; 
@@ -67,10 +79,20 @@ namespace JempaTV.Series
         private class omdbSerie
         {
             public string Title { get; set; }
+
+            public string Genre { get; set; }
+
             public string Year { get; set; }
-            public string Director { get; set; }
-            public string Actors { get; set; }
-            public string Plot { get; set; }
+
+            public string Runtime { get; set; }
+
+            public string Writer { get; set; }
+
+            public string Poster { get; set; }
+
+            public string Country { get; set; }
+
+            public float imdbRating { get; set; }
         }
 
     }
