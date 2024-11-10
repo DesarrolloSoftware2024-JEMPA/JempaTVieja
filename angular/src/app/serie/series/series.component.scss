@@ -1,0 +1,28 @@
+.title-series{
+    padding-bottom: 2rem;
+
+
+}
+
+.input-series{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    justify-self: center;
+    
+}
+
+.input-series input{
+    width: 20rem;
+}
+
+.input-series button{
+    width: auto;
+    align-self: end;
+    background-color: #2685ff;
+    color: white;
+    padding: 0.4rem;
+    border: white;
+    border-radius: 0.3rem;
+}
