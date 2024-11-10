@@ -12,6 +12,10 @@ namespace JempaTV.Series
     {
         public string Title { get; set; }
 
+        public string Year { get; set; }
+
+        public string Poster {  get; set; }
+
         public CalificationDto? Calification { get; set; }
     }
 }

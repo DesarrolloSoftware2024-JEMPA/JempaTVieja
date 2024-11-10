@@ -39,7 +39,7 @@ namespace JempaTV.Series
                 foreach (var serie in omdbSeriesList)
                 {
                     id = id + 1;
-                    matchedSeries.Add(new SerieDto { Title = serie.Title, Id = id });
+                    matchedSeries.Add(new SerieDto { Title = serie.Title, Id = id, Poster = serie.Poster, Year = serie.Year});
                 }
 
                 return matchedSeries; 
@@ -64,7 +64,7 @@ namespace JempaTV.Series
             public string Year { get; set; }
             public string Director { get; set; }
             public string Actors { get; set; }
-            public string Plot { get; set; }
+            public string Poster { get; set; }
         }
 
     }
