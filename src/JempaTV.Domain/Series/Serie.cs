@@ -9,23 +9,20 @@ namespace JempaTV.Series
 {
     public class Serie : AggregateRoot<int>
     {
-        public String Title { get; set; }
+        public string Title { get; set; }
 
-        public String Genero { get; set; }
+        public string? Genre { get; set; }
 
-        public DateTime LastModification { get; set; }
+        public string? Year { get; set; }
 
-        public DateTime Year { get; set; }
+        public string? Runtime { get; set; }
 
-        public String Director { get; set; }
+        public string? Writer { get; set; }
 
-        public String Actors { get; set; }
+        public string? Poster { get; set; }
 
-        public String Plot { get; set; }
+        public string? Country { get; set; }
 
-        public String Poster { get; set; }
-
-        public float Imdb {  get; set; }
-
-    }
+        public float? ImdbRating { get; set; }
+}
 }

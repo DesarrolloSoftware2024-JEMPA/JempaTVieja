@@ -17,7 +17,7 @@ namespace JempaTV.Series
         private static readonly string omdbUrl = "http://www.omdbapi.com/";
         private int id = 0;
 
-        public async Task<ICollection<SerieDto>> GetSeriesAsync(string title, string gender)
+        public async Task<ICollection<SerieDto>> GetSeriesAsync(string title)
         {
 
             try
@@ -45,7 +45,18 @@ namespace JempaTV.Series
                 {
                     //Asignacion de Ids
                     id = id + 1;
-                    matchedSeries.Add(new SerieDto { Title = serie.Title, Id = id });
+                    matchedSeries.Add(new SerieDto
+                    {
+                        Id = id,
+                        Title = serie.Title,
+                        Genre = serie.Genre,
+                        Year = serie.Year,
+                        Runtime = serie.Runtime,
+                        Writer = serie.Writer,
+                        Poster = serie.Poster,
+                        Country = serie.Country,
+                        ImdbRating = serie.imdbRating
+                    });
                 }
 
                 return matchedSeries;
@@ -62,28 +73,28 @@ namespace JempaTV.Series
         private class SearchResponse
         {
             [JsonProperty("Search")]
-            public List<omdbSerie> List { get; set; }
+            public List<omdbSerie>? List { get; set; }
         }
+
 
         private class omdbSerie
         {
-            public String Title { get; set; }
+            public string Title { get; set; }
 
-            public String Genero { get; set; }
+            public string? Genre { get; set; }
 
-            public DateTime LastModification { get; set; }
+            public string? Year { get; set; }
 
-            public DateTime Year { get; set; }
+            public string? Runtime { get; set; }
 
-            public String Director { get; set; }
+            public string? Writer { get; set; }
 
-            public String Actors { get; set; }
+            public string? Poster { get; set; }
 
-            public String Plot { get; set; }
+            public string? Country { get; set; }
 
-            public String Poster { get; set; }
+            public float? imdbRating { get; set; }
 
-            public float Imdb { get; set; }
         }
 
     }

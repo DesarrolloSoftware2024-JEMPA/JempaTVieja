@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace JempaTV.Migrations
 {
     [DbContext(typeof(JempaTVDbContext))]
-    [Migration("20241109184235_initial")]
-    partial class initial
+    [Migration("20241110181422_add-nullable")]
+    partial class addnullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,10 +35,6 @@ namespace JempaTV.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Actors")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .IsRequired()
@@ -46,8 +42,7 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(40)")
                         .HasColumnName("ConcurrencyStamp");
 
-                    b.Property<string>("Director")
-                        .IsRequired()
+                    b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExtraProperties")
@@ -55,22 +50,16 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<string>("Genero")
-                        .IsRequired()
+                    b.Property<string>("Genre")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Imdb")
+                    b.Property<float?>("ImdbRating")
                         .HasColumnType("real");
 
-                    b.Property<DateTime>("LastModification")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Plot")
-                        .IsRequired()
+                    b.Property<string>("Poster")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Poster")
-                        .IsRequired()
+                    b.Property<string>("Runtime")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -78,8 +67,11 @@ namespace JempaTV.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<DateTime>("Year")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Writer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Year")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
