@@ -39,6 +39,7 @@ namespace JempaTV.Series
                 //Finalmente obtenemos la lista de series similares
                 var omdbSeriesList = searchResponse?.List ?? new List<OmdbSerie>();
 
+
                 var matchedSeries = new List<SerieDto>();
 
                 foreach (var serie in omdbSeriesList)
@@ -54,13 +55,15 @@ namespace JempaTV.Series
                         Year = serie.Year,
                         Plot = serie.Plot,
                         Poster = serie.Poster
+
                     });
                 }
 
-                return matchedSeries; 
+                return matchedSeries;
 
             }
-            catch (HttpRequestException e){
+            catch (HttpRequestException e)
+            {
 
                 throw new Exception("Error al acceder a los datos de la API: ", e);
             }
@@ -74,6 +77,7 @@ namespace JempaTV.Series
         }
 
         private class OmdbSerie
+
         {
             public string ImdbID { get; set; }
             public string Title { get; set; }

@@ -42,6 +42,7 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(40)")
                         .HasColumnName("ConcurrencyStamp");
 
+
                     b.Property<string>("Director")
                         .HasColumnType("nvarchar(max)");
 
@@ -49,6 +50,7 @@ namespace JempaTV.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
+
 
                     b.Property<string>("ImdbID")
                         .IsRequired()
