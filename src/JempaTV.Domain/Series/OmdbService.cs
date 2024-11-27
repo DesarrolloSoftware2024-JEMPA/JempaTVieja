@@ -15,14 +15,14 @@ namespace JempaTV.Series
 
         private static readonly string apiKey = "b059b513";
         private static readonly string omdbUrl = "http://www.omdbapi.com/";
-        private int id = 0;
+        private int Id = 0;
 
         public async Task<ICollection<SerieDto>> GetSeriesAsync(string title)
         {
 
             try
             {
-                using HttpClient client = new HttpClient();
+                using HttpClient client = new();
 
                 //Formamos la url con los datos
                 string url = $"{omdbUrl}?s={title}&apikey={apiKey}&type=series";
@@ -37,25 +37,25 @@ namespace JempaTV.Series
                 var searchResponse = JsonConvert.DeserializeObject<SearchResponse>(jsonResponse);
 
                 //Finalmente obtenemos la lista de series similares
-                var omdbSeriesList = searchResponse?.List ?? new List<omdbSerie>();
+                var omdbSeriesList = searchResponse?.List ?? new List<OmdbSerie>();
+
 
                 var matchedSeries = new List<SerieDto>();
 
                 foreach (var serie in omdbSeriesList)
                 {
-                    //Asignacion de Ids
-                    id = id + 1;
-                    matchedSeries.Add(new SerieDto
-                    {
-                        Id = id,
+                    Id = Id + 1;
+                    matchedSeries.Add(new SerieDto 
+                    { 
+                        Id = Id,
                         Title = serie.Title,
-                        Genre = serie.Genre,
+                        ImdbID = serie.ImdbID, 
+                        Actors = serie.Actors,
+                        Director = serie.Director,
                         Year = serie.Year,
-                        Runtime = serie.Runtime,
-                        Writer = serie.Writer,
-                        Poster = serie.Poster,
-                        Country = serie.Country,
-                        ImdbRating = serie.imdbRating
+                        Plot = serie.Plot,
+                        Poster = serie.Poster
+
                     });
                 }
 
@@ -73,28 +73,19 @@ namespace JempaTV.Series
         private class SearchResponse
         {
             [JsonProperty("Search")]
-            public List<omdbSerie>? List { get; set; }
+            public List<OmdbSerie> List { get; set; }
         }
 
+        private class OmdbSerie
 
-        private class omdbSerie
         {
+            public string ImdbID { get; set; }
             public string Title { get; set; }
-
-            public string? Genre { get; set; }
-
-            public string? Year { get; set; }
-
-            public string? Runtime { get; set; }
-
-            public string? Writer { get; set; }
-
-            public string? Poster { get; set; }
-
-            public string? Country { get; set; }
-
-            public float? imdbRating { get; set; }
-
+            public string Year { get; set; }
+            public string Director { get; set; }
+            public string Actors { get; set; }
+            public string Plot { get; set; }
+            public string Poster {  get; set; }
         }
 
     }

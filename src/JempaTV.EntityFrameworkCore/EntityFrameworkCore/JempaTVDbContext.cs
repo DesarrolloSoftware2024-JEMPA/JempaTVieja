@@ -15,6 +15,7 @@ using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using JempaTV.Series;
+using JempaTV.WatchLists;
 
 namespace JempaTV.EntityFrameworkCore;
 
@@ -29,6 +30,8 @@ public class JempaTVDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
     public DbSet<Serie> Series { get; set; }
+
+    public DbSet<WatchList> WatchLists { get; set; }
 
     #region Entities from the modules
 
@@ -95,6 +98,12 @@ public class JempaTVDbContext :
             b.ToTable(JempaTVConsts.DbTablePrefix + "Series", JempaTVConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
             b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+        });
+
+        builder.Entity<WatchList>(b =>
+        {
+            b.ToTable(JempaTVConsts.DbTablePrefix + "WatchLists", JempaTVConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
         });
     }
 }

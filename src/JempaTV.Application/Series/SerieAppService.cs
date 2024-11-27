@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+
+using Scriban.Syntax;
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,24 +35,22 @@ namespace JempaTV.Series
 
             var listSeries = new List<Serie>();
 
-            foreach (var serie in matchedSeries)
-            {
+            foreach (var serie in matchedSeries) {
                 listSeries.Add(new Serie()
                 {
                     Title = serie.Title,
-                    Genre = serie.Genre,
+                    ImdbID = serie.ImdbID,
+                    Actors = serie.Actors,
+                    Director = serie.Director,
                     Year = serie.Year,
-                    Runtime = serie.Runtime,
-                    Writer = serie.Writer,
-                    Poster = serie.Poster,
-                    Country = serie.Country,
-                    ImdbRating = serie.ImdbRating
-
+                    Plot = serie.Plot,
+                    Poster = serie.Poster
                 });
             }
 
             await _seriesRepository.InsertManyAsync(listSeries);
         }
+
 
         public async Task<Collection<SerieDto>> GetInternalSeries()
         {
@@ -62,20 +62,20 @@ namespace JempaTV.Series
             {
                 seriesDto.Add(new SerieDto()
                 {
-                    Title = serie.Title,
-                    Genre = serie.Genre,
+                     Title = serie.Title,
+                    ImdbID = serie.ImdbID,
+                    Actors = serie.Actors,
+                    Director = serie.Director,
                     Year = serie.Year,
-                    Runtime = serie.Runtime,
-                    Writer = serie.Writer,
-                    Poster = serie.Poster,
-                    Country = serie.Country,
-                    ImdbRating = serie.ImdbRating
+                    Plot = serie.Plot,
+                    Poster = serie.Poster
                 }
                 );
             }
 
             return new Collection<SerieDto>(seriesDto);
         }
+
 
     }
 }
