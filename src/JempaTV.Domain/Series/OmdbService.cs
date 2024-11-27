@@ -17,35 +17,53 @@ namespace JempaTV.Series
         private static readonly string omdbUrl = "http://www.omdbapi.com/";
         private int id = 0;
 
-        public async Task<ICollection<SerieDto>> GetSeriesAsync(string title, string gender)
+        public async Task<ICollection<SerieDto>> GetSeriesAsync(string title)
         {
 
             try
             {
                 using HttpClient client = new HttpClient();
 
+                //Formamos la url con los datos
                 string url = $"{omdbUrl}?s={title}&apikey={apiKey}&type=series";
 
+                //Obtenemos la respuesta de forma asincrona
                 var response = await client.GetAsync(url);
 
+                //Pasamos la respuesta a un JSON
                 string jsonResponse = await response.Content.ReadAsStringAsync();
 
+                //Deserializamos el JSON a un Objeto
                 var searchResponse = JsonConvert.DeserializeObject<SearchResponse>(jsonResponse);
 
+                //Finalmente obtenemos la lista de series similares
                 var omdbSeriesList = searchResponse?.List ?? new List<omdbSerie>();
 
                 var matchedSeries = new List<SerieDto>();
 
                 foreach (var serie in omdbSeriesList)
                 {
+                    //Asignacion de Ids
                     id = id + 1;
-                    matchedSeries.Add(new SerieDto { Title = serie.Title, Id = id });
+                    matchedSeries.Add(new SerieDto
+                    {
+                        Id = id,
+                        Title = serie.Title,
+                        Genre = serie.Genre,
+                        Year = serie.Year,
+                        Runtime = serie.Runtime,
+                        Writer = serie.Writer,
+                        Poster = serie.Poster,
+                        Country = serie.Country,
+                        ImdbRating = serie.imdbRating
+                    });
                 }
 
-                return matchedSeries; 
+                return matchedSeries;
 
             }
-            catch (HttpRequestException e){
+            catch (HttpRequestException e)
+            {
 
                 throw new Exception("Error al acceder a los datos de la API: ", e);
             }
@@ -55,16 +73,28 @@ namespace JempaTV.Series
         private class SearchResponse
         {
             [JsonProperty("Search")]
-            public List<omdbSerie> List { get; set; }
+            public List<omdbSerie>? List { get; set; }
         }
+
 
         private class omdbSerie
         {
             public string Title { get; set; }
-            public string Year { get; set; }
-            public string Director { get; set; }
-            public string Actors { get; set; }
-            public string Plot { get; set; }
+
+            public string? Genre { get; set; }
+
+            public string? Year { get; set; }
+
+            public string? Runtime { get; set; }
+
+            public string? Writer { get; set; }
+
+            public string? Poster { get; set; }
+
+            public string? Country { get; set; }
+
+            public float? imdbRating { get; set; }
+
         }
 
     }
