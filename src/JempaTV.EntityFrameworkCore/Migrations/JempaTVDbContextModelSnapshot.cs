@@ -24,7 +24,9 @@ namespace JempaTV.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("JempaTV.Notifications.Notification", b =>
+
+            modelBuilder.Entity("JempaTV.Califications.Calification", b =>
+
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,7 +34,30 @@ namespace JempaTV.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ConcurrencyStamp")
+                    b.Property<string>("Comentario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdSerie")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Valor")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Calification");
+});
+                
+            modelBuilder.Entity("JempaTV.Notifications.Notification", b =>
+            
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+            
+            b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .IsRequired()
                         .HasMaxLength(40)
@@ -64,6 +89,7 @@ namespace JempaTV.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppNotifications", (string)null);
+
                 });
 
             modelBuilder.Entity("JempaTV.Series.Serie", b =>
@@ -74,8 +100,13 @@ namespace JempaTV.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+
+                    b.Property<int?>("CalificationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Actors")
                         .HasColumnType("nvarchar(max)");
+
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -124,6 +155,8 @@ namespace JempaTV.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CalificationId");
+
                     b.HasIndex("WatchListId");
 
                     b.ToTable("AppSeries", (string)null);
@@ -149,8 +182,8 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<int>("User")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdUsuario")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -2032,9 +2065,15 @@ namespace JempaTV.Migrations
 
             modelBuilder.Entity("JempaTV.Series.Serie", b =>
                 {
+                    b.HasOne("JempaTV.Califications.Calification", "Calification")
+                        .WithMany()
+                        .HasForeignKey("CalificationId");
+
                     b.HasOne("JempaTV.WatchLists.WatchList", null)
                         .WithMany("Series")
                         .HasForeignKey("WatchListId");
+
+                    b.Navigation("Calification");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>

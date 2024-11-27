@@ -13,6 +13,8 @@ namespace JempaTV.WatchLists
     {
         public List<Serie> Series { get; set; }
 
+        public Guid IdUsuario { get; set; }
+
         public WatchList()
         {
             Series = new List<Serie>();
