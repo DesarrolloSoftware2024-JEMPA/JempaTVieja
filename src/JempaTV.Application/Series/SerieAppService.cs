@@ -30,7 +30,7 @@ namespace JempaTV.Series
             _watchlistRepository = watchlistRepository;
             _serieRepository = serieRepository;
             _mapper = mapper;
-
+        }
 
         public async Task<ICollection<SerieDto>> SearchAsync(string title)
         {
@@ -56,13 +56,13 @@ namespace JempaTV.Series
                 });
             }
 
-            await _seriesRepository.InsertManyAsync(listSeries);
+            await _serieRepository.InsertManyAsync(listSeries);
         }
 
 
         public async Task<Collection<SerieDto>> GetInternalSeries()
         {
-            var series = await _seriesRepository.ToListAsync();
+            var series = await _serieRepository.ToListAsync();
 
             var seriesDto = new List<SerieDto>();
 

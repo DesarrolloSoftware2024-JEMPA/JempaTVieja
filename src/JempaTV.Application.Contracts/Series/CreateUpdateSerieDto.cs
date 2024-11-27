@@ -10,6 +10,7 @@ namespace JempaTV.Series
 {
     public class CreateUpdateSerieDto
     {
+        public string ImdbID { get; set; }
         public string Title { get; set; }
         public CalificationDto? Calification { get; set; }
         public string Year { get; set; }
