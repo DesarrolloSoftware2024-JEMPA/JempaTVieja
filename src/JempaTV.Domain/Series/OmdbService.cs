@@ -25,13 +25,15 @@ namespace JempaTV.Series
                 using HttpClient client = new();
 
                 //Formamos la url con los datos
-                string url = $"{omdbUrl}?s={title}&apikey={apiKey}&type=series";
+                string url = $"{omdbUrl}?t={title}&apikey={apiKey}&type=series";
 
                 //Obtenemos la respuesta de forma asincrona
                 var response = await client.GetAsync(url);
 
                 //Pasamos la respuesta a un JSON
                 string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                Console.WriteLine(jsonResponse);
 
                 //Deserializamos el JSON a un Objeto
                 var searchResponse = JsonConvert.DeserializeObject<SearchResponse>(jsonResponse);
@@ -55,7 +57,6 @@ namespace JempaTV.Series
                         Year = serie.Year,
                         Plot = serie.Plot,
                         Poster = serie.Poster
-
                     });
                 }
 
@@ -81,11 +82,13 @@ namespace JempaTV.Series
         {
             public string ImdbID { get; set; }
             public string Title { get; set; }
+            public string Genre { get; set; }
             public string Year { get; set; }
             public string Director { get; set; }
             public string Actors { get; set; }
             public string Plot { get; set; }
             public string Poster {  get; set; }
+
         }
 
     }

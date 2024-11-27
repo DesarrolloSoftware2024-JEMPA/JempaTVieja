@@ -16,6 +16,7 @@ namespace JempaTV.Series
         public string? Actors { get; set; }
         public string? Plot { get; set; }
         public string? Poster {  get; set; }
+
     }
 
 }
