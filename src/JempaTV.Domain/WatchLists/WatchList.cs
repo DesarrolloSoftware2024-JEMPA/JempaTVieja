@@ -1,4 +1,5 @@
 ﻿using JempaTV.Series;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,7 @@ namespace JempaTV.WatchLists
         {
             Series = new List<Serie>();
         }
+
+        public int User { get; set; }
     }
 }

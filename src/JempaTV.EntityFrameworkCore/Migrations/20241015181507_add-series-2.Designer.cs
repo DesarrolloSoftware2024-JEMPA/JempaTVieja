@@ -4,6 +4,7 @@ using JempaTV.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace JempaTV.Migrations
 {
     [DbContext(typeof(JempaTVDbContext))]
-    partial class JempaTVDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241015181507_add-series-2")]
+    partial class addseries2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,74 +27,6 @@ namespace JempaTV.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-
-            modelBuilder.Entity("JempaTV.Califications.Calification", b =>
-
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Comentario")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdSerie")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Valor")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Calification");
-});
-                
-            modelBuilder.Entity("JempaTV.Notifications.Notification", b =>
-            
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
-
-            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-            
-            b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("Read")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("User")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppNotifications", (string)null);
-
-                });
-
             modelBuilder.Entity("JempaTV.Series.Serie", b =>
                 {
                     b.Property<int>("Id")
@@ -100,13 +35,9 @@ namespace JempaTV.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-
-                    b.Property<int?>("CalificationId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Actors")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -115,10 +46,8 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(40)")
                         .HasColumnName("ConcurrencyStamp");
 
-
-
                     b.Property<string>("Director")
-
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExtraProperties")
@@ -126,20 +55,13 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                  b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImdbID")
+                    b.Property<string>("Plot")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Plot")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Poster")
-
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -153,9 +75,11 @@ namespace JempaTV.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("imdbID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("CalificationId");
+                    b.HasKey("Id");
 
                     b.HasIndex("WatchListId");
 
@@ -181,9 +105,6 @@ namespace JempaTV.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
-
-                    b.Property<Guid>("IdUsuario")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -2065,15 +1986,9 @@ namespace JempaTV.Migrations
 
             modelBuilder.Entity("JempaTV.Series.Serie", b =>
                 {
-                    b.HasOne("JempaTV.Califications.Calification", "Calification")
-                        .WithMany()
-                        .HasForeignKey("CalificationId");
-
                     b.HasOne("JempaTV.WatchLists.WatchList", null)
                         .WithMany("Series")
                         .HasForeignKey("WatchListId");
-
-                    b.Navigation("Calification");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>

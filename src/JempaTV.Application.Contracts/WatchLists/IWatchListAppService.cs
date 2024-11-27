@@ -16,5 +16,7 @@ namespace JempaTV.WatchLists
 
         Task<List<SerieDto>> GetSeriesAsync(Guid IdUsuario);
 
+        Task<List<WatchListDto>> GetRecentChangesAsync();
+
     }
 }
