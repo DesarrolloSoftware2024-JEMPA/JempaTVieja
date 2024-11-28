@@ -50,9 +50,11 @@ namespace JempaTV.Series
                     ImdbID = serie.ImdbID,
                     Actors = serie.Actors,
                     Director = serie.Director,
+                    LastModified = DateTime.Now,
                     Year = serie.Year,
                     Plot = serie.Plot,
-                    Poster = serie.Poster
+                    Poster = serie.Poster,
+                    Calification = null,
                 });
             }
 
@@ -126,7 +128,7 @@ namespace JempaTV.Series
 
         public async Task AddCalificationAsync(CalificationDto calification, Guid IdUsuario)
         {
-            if (calification.Valor > 5 | calification.Valor < 0) 
+            if (calification.Valor < 5 | calification.Valor > 0) 
             {
 
                var serie = await _serieRepository.GetAsync(calification.IdSerie);
@@ -146,14 +148,14 @@ namespace JempaTV.Series
                     }
                     else
                     {
-                        Console.WriteLine("La serie no se encuentra en la Watchlist de este usuario.");
+                        throw new Exception("La serie no se encuentra en la Watchlist de este usuario.");
                     }
                 }
 
             }
             else
             {
-                Console.WriteLine("El valor de la calificacion no se encuentra entre 0 y 5");
+                throw new Exception("El valor de la calificacion no se encuentra entre 0 y 5");
             }
 
         }

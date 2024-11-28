@@ -77,7 +77,7 @@ namespace JempaTV.BackgroundWorker
                     Read = false
                 };
 
-                 await _notificationAppService.SendNotification(notif, "8802F6C4-043C-8EC2-6B82-3A15AE64EEF4");
+                 await _notificationAppService.SendNotification(notif, new Guid("8802F6C4-043C-8EC2-6B82-3A15AE64EEF4"));
 
             }
 

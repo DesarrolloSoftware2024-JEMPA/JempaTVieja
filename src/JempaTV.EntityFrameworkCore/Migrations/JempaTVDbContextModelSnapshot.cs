@@ -24,9 +24,7 @@ namespace JempaTV.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-
             modelBuilder.Entity("JempaTV.Califications.Calification", b =>
-
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,18 +44,17 @@ namespace JempaTV.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Calification");
-});
-                
-            modelBuilder.Entity("JempaTV.Notifications.Notification", b =>
-            
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                });
 
-            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-            
-            b.Property<string>("ConcurrencyStamp")
+            modelBuilder.Entity("JempaTV.Notifications.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .IsRequired()
                         .HasMaxLength(40)
@@ -82,14 +79,12 @@ namespace JempaTV.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("User")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("User")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.ToTable("AppNotifications", (string)null);
-
                 });
 
             modelBuilder.Entity("JempaTV.Series.Serie", b =>
@@ -100,13 +95,11 @@ namespace JempaTV.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-
-                    b.Property<int?>("CalificationId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Actors")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CalificationId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -115,10 +108,7 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(40)")
                         .HasColumnName("ConcurrencyStamp");
 
-
-
                     b.Property<string>("Director")
-
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExtraProperties")
@@ -126,20 +116,17 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                  b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ImdbID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Plot")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Poster")
-
                         .HasColumnType("nvarchar(max)");
-
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -150,7 +137,6 @@ namespace JempaTV.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Year")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -184,6 +170,9 @@ namespace JempaTV.Migrations
 
                     b.Property<Guid>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("User")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

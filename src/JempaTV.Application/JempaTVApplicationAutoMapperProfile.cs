@@ -1,5 +1,6 @@
 using AutoMapper;
 using JempaTV.Califications;
+using JempaTV.Notifications;
 using JempaTV.Series;
 
 namespace JempaTV;
@@ -15,5 +16,7 @@ public class JempaTVApplicationAutoMapperProfile : Profile
         CreateMap<Calification, CalificationDto>();
         CreateMap<Serie, SerieDto>();
         CreateMap<SerieDto, Serie>();
+        CreateMap<Notification, NotificationDto>();
+        CreateMap<NotificationDto, Notification>();
     }
 }

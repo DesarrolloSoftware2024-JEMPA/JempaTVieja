@@ -25,7 +25,7 @@ namespace JempaTV.Series
                 using HttpClient client = new();
 
                 //Formamos la url con los datos
-                string url = $"{omdbUrl}?t={title}&apikey={apiKey}&type=series";
+                string url = $"{omdbUrl}?s={title}&apikey={apiKey}&type=series&page=1";
 
                 //Obtenemos la respuesta de forma asincrona
                 var response = await client.GetAsync(url);
@@ -33,10 +33,13 @@ namespace JempaTV.Series
                 //Pasamos la respuesta a un JSON
                 string jsonResponse = await response.Content.ReadAsStringAsync();
 
-                Console.WriteLine(jsonResponse);
-
                 //Deserializamos el JSON a un Objeto
                 var searchResponse = JsonConvert.DeserializeObject<SearchResponse>(jsonResponse);
+
+                if (searchResponse.List == null)
+                {
+                    throw new Exception("Error al convertir los datos de la API");
+                }
 
                 //Finalmente obtenemos la lista de series similares
                 var omdbSeriesList = searchResponse?.List ?? new List<OmdbSerie>();
