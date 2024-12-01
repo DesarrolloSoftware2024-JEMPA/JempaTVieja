@@ -29,22 +29,25 @@ namespace JempaTV.WatchLists
             this._mapper = mapper;
         }
 
-        public async Task AddSerieAsync(int watchlistId, int serieId)
+        public async Task AddSerieAsync(int serieId)
         {
             try
             {
-                //Podriamos modificar la funcion para que reciba como parametro el IdUsuario en vez de watchlistId.
+                Guid? IdUsuario = _currentUser.Id;
 
-                var watchlist = ((List<WatchList>)await _watchListRepository.GetListAsync()).FirstOrDefault();
+                var watchlist = ((List<WatchList>)await _watchListRepository.GetListAsync()).FirstOrDefault(w => w.IdUsuario == IdUsuario);
 
                 if (watchlist == null)
                 {
                     watchlist = new WatchList();
+                    watchlist.IdUsuario=IdUsuario;
                     await _watchListRepository.InsertAsync(watchlist);
                 }
 
                 var serie = await _serieRepository.GetAsync(serieId);
-                watchlist.Series?.Add(serie);
+
+                if (!(watchlist.Series.Contains(serie))) { watchlist.Series?.Add(serie); }
+
                 await _watchListRepository.UpdateAsync(watchlist);
             }
             catch (Exception ex)
@@ -126,6 +129,32 @@ namespace JempaTV.WatchLists
     
         }
 
+
+        public async Task DeleteSerieFromWatchlist(int IdSerie)
+        {
+            Guid? IdUsuario = _currentUser.Id;
+
+            var queryable = await _watchListRepository.WithDetailsAsync(w => w.Series);
+
+            var watchlist = (await AsyncExecuter.ToListAsync(queryable)).FirstOrDefault(w => w.IdUsuario == IdUsuario);
+
+            var Series = new List<Serie>();
+
+            if (watchlist != null)
+                foreach (var serie in watchlist.Series)
+                {
+                    if (serie.Id != IdSerie)
+                    {
+                        Series.Add(serie);
+                    }
+                    
+                }
+
+            watchlist.Series = Series;
+
+            await _watchListRepository.UpdateAsync(watchlist);
+            
+        }
       
     }
 }

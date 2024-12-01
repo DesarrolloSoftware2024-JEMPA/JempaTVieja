@@ -10,7 +10,7 @@ namespace JempaTV.WatchLists
 {
     public interface IWatchListAppService : IApplicationService
     {
-        Task AddSerieAsync(int watchlistId, int serieId);
+        Task AddSerieAsync(int serieId);
 
         Task AddWatchlist();
 
