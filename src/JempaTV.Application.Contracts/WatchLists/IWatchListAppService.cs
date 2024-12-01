@@ -12,9 +12,9 @@ namespace JempaTV.WatchLists
     {
         Task AddSerieAsync(int watchlistId, int serieId);
 
-        Task AddWatchlist(Guid IdUsuario);
+        Task AddWatchlist();
 
-        Task<List<SerieDto>> GetSeriesAsync(Guid IdUsuario);
+        Task<List<SerieDto>> GetSeriesAsync();
 
         Task<List<WatchListDto>> GetRecentChangesAsync();
 

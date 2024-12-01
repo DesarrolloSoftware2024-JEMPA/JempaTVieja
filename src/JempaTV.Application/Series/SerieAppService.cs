@@ -15,6 +15,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
+using Volo.Abp.Users;
 
 namespace JempaTV.Series
 {
@@ -23,12 +24,14 @@ namespace JempaTV.Series
         private readonly ISerieApiService _seriesApiService;
         private readonly IRepository<WatchList, int> _watchlistRepository;
         private readonly IRepository<Serie, int> _serieRepository;
+        private readonly ICurrentUser _currentUser;
         private readonly IMapper _mapper;
-        public SerieAppService(IRepository<Serie, int> repository, ISerieApiService seriesapiService, IRepository<WatchList, int> watchlistRepository, IRepository<Serie, int> serieRepository, IMapper mapper) : base(repository)
+        public SerieAppService(IRepository<Serie, int> repository, ISerieApiService seriesapiService, IRepository<WatchList, int> watchlistRepository, IRepository<Serie, int> serieRepository, IMapper mapper, ICurrentUser currentUser) : base(repository)
         {
             _seriesApiService = seriesapiService;
             _watchlistRepository = watchlistRepository;
             _serieRepository = serieRepository;
+            _currentUser = currentUser;
             _mapper = mapper;
         }
 
@@ -86,11 +89,14 @@ namespace JempaTV.Series
             return new Collection<SerieDto>(seriesDto);
         }
 
-        public async Task<List<CalificationDto>> GetCalificationsAsync(Guid IdUsuario)
+        public async Task<List<CalificationDto>> GetCalificationsAsync()
         {
             
             try
             {
+
+                Guid? IdUsuario = _currentUser.Id;
+
                 var calificationList = new List<CalificationDto>();
 
                 var queryable = await _watchlistRepository.WithDetailsAsync(w => w.Series);
@@ -126,12 +132,13 @@ namespace JempaTV.Series
             
         }
 
-        public async Task AddCalificationAsync(CalificationDto calification, Guid IdUsuario)
+        public async Task AddCalificationAsync(CalificationDto calification)
         {
             if (calification.Valor < 5 | calification.Valor > 0) 
             {
+                Guid? IdUsuario = _currentUser.Id;
 
-               var serie = await _serieRepository.GetAsync(calification.IdSerie);
+                var serie = await _serieRepository.GetAsync(calification.IdSerie);
             
                var userWatchlist = await _watchlistRepository.GetAsync(w => w.IdUsuario == IdUsuario);
 
@@ -160,8 +167,10 @@ namespace JempaTV.Series
 
         }
 
-        public async Task EditCalificationAsync(int IdCalification, CalificationDto updateCalification, Guid IdUsuario)
+        public async Task EditCalificationAsync(CalificationDto updateCalification)
         {
+            Guid? IdUsuario = _currentUser.Id;
+
             var queryable1 = await _serieRepository.WithDetailsAsync(s => s.Calification);
 
             var serie = (await AsyncExecuter.ToListAsync(queryable1)).FirstOrDefault(s => s.Id == updateCalification.IdSerie);

@@ -17,6 +17,8 @@ using Volo.Abp.Emailing;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.TenantManagement;
+using JempaTV.User;
+
 
 namespace JempaTV;
 
@@ -64,6 +66,7 @@ public class JempaTVDomainModule : AbpModule
             options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch"));
             options.Languages.Add(new LanguageInfo("es", "es", "Español"));
         });
+        context.Services.AddTransient<CurrentUserService>();
         
 
 #if DEBUG

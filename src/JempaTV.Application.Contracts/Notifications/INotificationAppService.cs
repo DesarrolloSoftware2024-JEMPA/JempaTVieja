@@ -10,8 +10,8 @@ namespace JempaTV.Notifications
 {
     public interface INotificationAppService : IApplicationService
     {
-        Task SendNotification(NotificationDto notif, Guid userId);
+        Task SendNotification(NotificationDto notif);
 
-        Task<Collection<NotificationDto>> GetNotificationFromuser(Guid userId);
+        Task<Collection<NotificationDto>> GetNotificationFromuser();
     }
 }

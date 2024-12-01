@@ -12,7 +12,7 @@ namespace JempaTV.Notifications
 
         public string Title { get; set; }
 
-        public Guid User {  get; set; }
+        public Guid? User {  get; set; }
         
         public string? Content { get; set; }
 

@@ -12,11 +12,12 @@ namespace JempaTV.WatchLists
     {
         public List<SerieDto> Series { get; set; }
 
+        public Guid? IdUsuario { get; set; }
+
         public WatchListDto()
         {
             Series = new List<SerieDto>();
         }
 
-        public int User { get; set; }
     }
 }

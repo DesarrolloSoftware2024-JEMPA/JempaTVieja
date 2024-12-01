@@ -18,6 +18,8 @@ using JempaTV.Series;
 using JempaTV.WatchLists;
 using JempaTV.Califications;
 using JempaTV.Notifications;
+using JempaTV.User;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 
 namespace JempaTV.EntityFrameworkCore;
@@ -38,6 +40,7 @@ public class JempaTVDbContext :
 
     public DbSet<Notification> Notifications {  get; set; }
 
+    private readonly CurrentUserService _currentUserService;
 
     #region Entities from the modules
 
@@ -71,7 +74,7 @@ public class JempaTVDbContext :
     public JempaTVDbContext(DbContextOptions<JempaTVDbContext> options)
         : base(options)
     {
-
+        _currentUserService = this.GetService<CurrentUserService>();
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

@@ -18,11 +18,11 @@ namespace JempaTV.Series
 
         Task<Collection<SerieDto>> GetInternalSeries();
 
-        Task<List<CalificationDto>> GetCalificationsAsync(Guid IdUsuario);
+        Task<List<CalificationDto>> GetCalificationsAsync();
 
-        Task AddCalificationAsync(CalificationDto calification, Guid IdUsuario);
+        Task AddCalificationAsync(CalificationDto calification);
 
-        Task EditCalificationAsync(int IdCalification, CalificationDto updateCalification, Guid IdUsuario);
+        Task EditCalificationAsync(CalificationDto updateCalification);
 
 
     }

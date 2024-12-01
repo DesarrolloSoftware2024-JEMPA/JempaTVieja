@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Users;
 
 namespace JempaTV.WatchLists
 {
@@ -16,12 +18,14 @@ namespace JempaTV.WatchLists
 
         private readonly IRepository<WatchList, int> _watchListRepository;
         private readonly IRepository<Serie, int> _serieRepository;
+        private readonly ICurrentUser _currentUser;
         private readonly IMapper _mapper;
 
-        public WatchListAppService(IRepository<WatchList, int> watchListRepository, IRepository<Serie, int> serieRepository, IMapper mapper)
+        public WatchListAppService(IRepository<WatchList, int> watchListRepository, IRepository<Serie, int> serieRepository, IMapper mapper, ICurrentUser currentUser)
         {
             this._watchListRepository = watchListRepository;
             this._serieRepository = serieRepository;
+            this._currentUser = currentUser;
             this._mapper = mapper;
         }
 
@@ -52,11 +56,12 @@ namespace JempaTV.WatchLists
 
         }
 
-        public async Task AddWatchlist(Guid IdUsuario)
+        public async Task AddWatchlist()
         {
             try
             {
-                
+                Guid? IdUsuario = _currentUser.Id;
+
                 var watchlist = await _watchListRepository.FirstOrDefaultAsync(w => w.IdUsuario == IdUsuario);
 
                 if (watchlist?.Id == null)
@@ -72,8 +77,10 @@ namespace JempaTV.WatchLists
             }
         }
 
-        public async Task<List<SerieDto>> GetSeriesAsync(Guid IdUsuario)
+        public async Task<List<SerieDto>> GetSeriesAsync()
         {
+            Guid? IdUsuario = _currentUser.Id;
+
             var queryable = await _watchListRepository.WithDetailsAsync(w => w.Series);
 
             var watchlist = (await AsyncExecuter.ToListAsync(queryable)).FirstOrDefault(w => w.IdUsuario == IdUsuario);
@@ -108,7 +115,7 @@ namespace JempaTV.WatchLists
                         recentChanges.Add(new WatchListDto
                         {
                             Id = watchlist.Id,
-                            User = watchlist.User
+                            IdUsuario = watchlist.IdUsuario,
                         });
                     }
                 }

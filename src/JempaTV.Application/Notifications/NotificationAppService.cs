@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Users;
 
 namespace JempaTV.Notifications
 {
@@ -17,15 +18,17 @@ namespace JempaTV.Notifications
     {
 
         private readonly IRepository<Notification, int> _notificationRepository;
+        private readonly ICurrentUser _currentUser;
         private readonly IMapper _mapper;
 
-        public NotificationAppService(IRepository<Notification, int> notificationRepository, IMapper mapper) 
+        public NotificationAppService(IRepository<Notification, int> notificationRepository, IMapper mapper, ICurrentUser currentUser) 
         {
             _notificationRepository = notificationRepository;
+            _currentUser = currentUser;
             _mapper = mapper;
         }
 
-        public async Task SendNotification(NotificationDto notif, Guid userId)
+        public async Task SendNotification(NotificationDto notif)
         {
             var notification = new Notification()
             {
@@ -33,7 +36,7 @@ namespace JempaTV.Notifications
                 Content = notif.Content,
                 Type = notif.Type,
                 Read = notif.Read,
-                User = userId,
+                User = _currentUser.Id,
 
             };
 
@@ -42,8 +45,10 @@ namespace JempaTV.Notifications
 
         }
 
-        public async Task<Collection<NotificationDto>> GetNotificationFromuser(Guid userId)
+        public async Task<Collection<NotificationDto>> GetNotificationFromuser()
         {
+            Guid? userId = _currentUser.Id;
+
             var notificationDtoList = new Collection<NotificationDto>();
 
             var notificationList = await _notificationRepository.GetListAsync(n => n.User == userId);
