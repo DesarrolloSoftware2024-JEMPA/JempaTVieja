@@ -16,6 +16,7 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using JempaTV.Series;
 using JempaTV.WatchLists;
+using JempaTV.Notifications;
 
 namespace JempaTV.EntityFrameworkCore;
 
@@ -32,6 +33,8 @@ public class JempaTVDbContext :
     public DbSet<Serie> Series { get; set; }
 
     public DbSet<WatchList> WatchLists { get; set; }
+
+    public DbSet<Notification> Notifications {  get; set; }
 
     #region Entities from the modules
 
@@ -103,6 +106,12 @@ public class JempaTVDbContext :
         builder.Entity<WatchList>(b =>
         {
             b.ToTable(JempaTVConsts.DbTablePrefix + "WatchLists", JempaTVConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+        });
+
+        builder.Entity<Notification>(b =>
+        {
+            b.ToTable(JempaTVConsts.DbTablePrefix + "Notifications", JempaTVConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
         });
     }
