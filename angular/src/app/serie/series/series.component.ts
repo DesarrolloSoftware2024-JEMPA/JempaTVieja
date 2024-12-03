@@ -17,7 +17,7 @@ export class SeriesComponent {
 
   public searchSeries() {
     if(this.serieTitle.trim()) {
-      this.serieService.search(this.serieTitle.trim(), "x").subscribe(response => this.series = response || []);
+      this.serieService.search(this.serieTitle.trim()).subscribe(response => this.series = response || []);
     }
   }
 

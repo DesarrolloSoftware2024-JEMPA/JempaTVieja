@@ -12,6 +12,6 @@ namespace JempaTV.Notifications
     {
         Task SendNotification(NotificationDto notif);
 
-        Task<Collection<NotificationDto>> GetNotificationFromuser();
+        Task<Collection<NotificationDto>> GetNotificationFromUser();
     }
 }

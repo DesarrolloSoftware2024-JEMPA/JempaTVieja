@@ -74,8 +74,10 @@ public class JempaTVDbContext :
     public JempaTVDbContext(DbContextOptions<JempaTVDbContext> options)
         : base(options)
     {
-        _currentUserService = this.GetService<CurrentUserService>();
+        //_currentUserService = this.GetService<CurrentUserService>();
     }
+
+    
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

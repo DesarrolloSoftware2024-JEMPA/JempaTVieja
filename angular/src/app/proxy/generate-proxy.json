@@ -873,16 +873,16 @@
       "rootPath": "app",
       "remoteServiceName": "Default",
       "controllers": {
-        "TvTracker.Series.SerieAppService": {
+        "JempaTV.Series.SerieAppService": {
           "controllerName": "Serie",
           "controllerGroupName": "Serie",
           "isRemoteService": true,
           "isIntegrationService": false,
           "apiVersion": null,
-          "type": "TvTracker.Series.SerieAppService",
+          "type": "JempaTV.Series.SerieAppService",
           "interfaces": [
             {
-              "type": "TvTracker.Series.ISerieAppService",
+              "type": "JempaTV.Series.ISerieAppService",
               "name": "ISerieAppService",
               "methods": [
                 {
@@ -906,8 +906,8 @@
                     }
                   ],
                   "returnValue": {
-                    "type": "System.Collections.Generic.ICollection<TvTracker.Series.SerieDto>",
-                    "typeSimple": "[TvTracker.Series.SerieDto]"
+                    "type": "System.Collections.Generic.ICollection<JempaTV.Series.SerieDto>",
+                    "typeSimple": "[JempaTV.Series.SerieDto]"
                   }
                 },
                 {
@@ -923,8 +923,8 @@
                     }
                   ],
                   "returnValue": {
-                    "type": "TvTracker.Series.SerieDto",
-                    "typeSimple": "TvTracker.Series.SerieDto"
+                    "type": "JempaTV.Series.SerieDto",
+                    "typeSimple": "JempaTV.Series.SerieDto"
                   }
                 },
                 {
@@ -940,8 +940,8 @@
                     }
                   ],
                   "returnValue": {
-                    "type": "Volo.Abp.Application.Dtos.PagedResultDto<TvTracker.Series.SerieDto>",
-                    "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<TvTracker.Series.SerieDto>"
+                    "type": "Volo.Abp.Application.Dtos.PagedResultDto<JempaTV.Series.SerieDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<JempaTV.Series.SerieDto>"
                   }
                 },
                 {
@@ -949,16 +949,16 @@
                   "parametersOnMethod": [
                     {
                       "name": "input",
-                      "typeAsString": "TvTracker.Series.CreateUpdateSerieDto, TvTracker.Application.Contracts",
-                      "type": "TvTracker.Series.CreateUpdateSerieDto",
-                      "typeSimple": "TvTracker.Series.CreateUpdateSerieDto",
+                      "typeAsString": "JempaTV.Series.CreateUpdateSerieDto, JempaTV.Application.Contracts",
+                      "type": "JempaTV.Series.CreateUpdateSerieDto",
+                      "typeSimple": "JempaTV.Series.CreateUpdateSerieDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
                   ],
                   "returnValue": {
-                    "type": "TvTracker.Series.SerieDto",
-                    "typeSimple": "TvTracker.Series.SerieDto"
+                    "type": "JempaTV.Series.SerieDto",
+                    "typeSimple": "JempaTV.Series.SerieDto"
                   }
                 },
                 {
@@ -974,16 +974,16 @@
                     },
                     {
                       "name": "input",
-                      "typeAsString": "TvTracker.Series.CreateUpdateSerieDto, TvTracker.Application.Contracts",
-                      "type": "TvTracker.Series.CreateUpdateSerieDto",
-                      "typeSimple": "TvTracker.Series.CreateUpdateSerieDto",
+                      "typeAsString": "JempaTV.Series.CreateUpdateSerieDto, JempaTV.Application.Contracts",
+                      "type": "JempaTV.Series.CreateUpdateSerieDto",
+                      "typeSimple": "JempaTV.Series.CreateUpdateSerieDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
                   ],
                   "returnValue": {
-                    "type": "TvTracker.Series.SerieDto",
-                    "typeSimple": "TvTracker.Series.SerieDto"
+                    "type": "JempaTV.Series.SerieDto",
+                    "typeSimple": "JempaTV.Series.SerieDto"
                   }
                 },
                 {
@@ -1058,11 +1058,11 @@
                 }
               ],
               "returnValue": {
-                "type": "System.Collections.Generic.ICollection<TvTracker.Series.SerieDto>",
-                "typeSimple": "[TvTracker.Series.SerieDto]"
+                "type": "System.Collections.Generic.ICollection<JempaTV.Series.SerieDto>",
+                "typeSimple": "[JempaTV.Series.SerieDto]"
               },
               "allowAnonymous": null,
-              "implementFrom": "TvTracker.Series.ISerieAppService"
+              "implementFrom": "JempaTV.Series.ISerieAppService"
             },
             "CreateAsyncByInput": {
               "uniqueName": "CreateAsyncByInput",
@@ -1073,9 +1073,9 @@
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "TvTracker.Series.CreateUpdateSerieDto, TvTracker.Application.Contracts",
-                  "type": "TvTracker.Series.CreateUpdateSerieDto",
-                  "typeSimple": "TvTracker.Series.CreateUpdateSerieDto",
+                  "typeAsString": "JempaTV.Series.CreateUpdateSerieDto, JempaTV.Application.Contracts",
+                  "type": "JempaTV.Series.CreateUpdateSerieDto",
+                  "typeSimple": "JempaTV.Series.CreateUpdateSerieDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -1085,8 +1085,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "TvTracker.Series.CreateUpdateSerieDto",
-                  "typeSimple": "TvTracker.Series.CreateUpdateSerieDto",
+                  "type": "JempaTV.Series.CreateUpdateSerieDto",
+                  "typeSimple": "JempaTV.Series.CreateUpdateSerieDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -1095,11 +1095,11 @@
                 }
               ],
               "returnValue": {
-                "type": "TvTracker.Series.SerieDto",
-                "typeSimple": "TvTracker.Series.SerieDto"
+                "type": "JempaTV.Series.SerieDto",
+                "typeSimple": "JempaTV.Series.SerieDto"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<TvTracker.Series.SerieDto,TvTracker.Series.CreateUpdateSerieDto>"
+              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<JempaTV.Series.SerieDto,JempaTV.Series.CreateUpdateSerieDto>"
             },
             "UpdateAsyncByIdAndInput": {
               "uniqueName": "UpdateAsyncByIdAndInput",
@@ -1118,9 +1118,9 @@
                 },
                 {
                   "name": "input",
-                  "typeAsString": "TvTracker.Series.CreateUpdateSerieDto, TvTracker.Application.Contracts",
-                  "type": "TvTracker.Series.CreateUpdateSerieDto",
-                  "typeSimple": "TvTracker.Series.CreateUpdateSerieDto",
+                  "typeAsString": "JempaTV.Series.CreateUpdateSerieDto, JempaTV.Application.Contracts",
+                  "type": "JempaTV.Series.CreateUpdateSerieDto",
+                  "typeSimple": "JempaTV.Series.CreateUpdateSerieDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -1142,8 +1142,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "TvTracker.Series.CreateUpdateSerieDto",
-                  "typeSimple": "TvTracker.Series.CreateUpdateSerieDto",
+                  "type": "JempaTV.Series.CreateUpdateSerieDto",
+                  "typeSimple": "JempaTV.Series.CreateUpdateSerieDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -1152,11 +1152,11 @@
                 }
               ],
               "returnValue": {
-                "type": "TvTracker.Series.SerieDto",
-                "typeSimple": "TvTracker.Series.SerieDto"
+                "type": "JempaTV.Series.SerieDto",
+                "typeSimple": "JempaTV.Series.SerieDto"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<TvTracker.Series.SerieDto,System.Int32,TvTracker.Series.CreateUpdateSerieDto>"
+              "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<JempaTV.Series.SerieDto,System.Int32,JempaTV.Series.CreateUpdateSerieDto>"
             },
             "DeleteAsyncById": {
               "uniqueName": "DeleteAsyncById",
@@ -1226,11 +1226,11 @@
                 }
               ],
               "returnValue": {
-                "type": "TvTracker.Series.SerieDto",
-                "typeSimple": "TvTracker.Series.SerieDto"
+                "type": "JempaTV.Series.SerieDto",
+                "typeSimple": "JempaTV.Series.SerieDto"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<TvTracker.Series.SerieDto,TvTracker.Series.SerieDto,System.Int32,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<JempaTV.Series.SerieDto,JempaTV.Series.SerieDto,System.Int32,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
             },
             "GetListAsyncByInput": {
               "uniqueName": "GetListAsyncByInput",
@@ -1287,24 +1287,24 @@
                 }
               ],
               "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.PagedResultDto<TvTracker.Series.SerieDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<TvTracker.Series.SerieDto>"
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<JempaTV.Series.SerieDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<JempaTV.Series.SerieDto>"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<TvTracker.Series.SerieDto,TvTracker.Series.SerieDto,System.Int32,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<JempaTV.Series.SerieDto,JempaTV.Series.SerieDto,System.Int32,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
             }
           }
         },
-        "TvTracker.Watchlists.WatchlistAppService": {
+        "JempaTV.Watchlists.WatchlistAppService": {
           "controllerName": "Watchlist",
           "controllerGroupName": "Watchlist",
           "isRemoteService": true,
           "isIntegrationService": false,
           "apiVersion": null,
-          "type": "TvTracker.Watchlists.WatchlistAppService",
+          "type": "JempaTV.Watchlists.WatchlistAppService",
           "interfaces": [
             {
-              "type": "TvTracker.Watchlists.IWatchlistAppService",
+              "type": "JempaTV.Watchlists.IWatchlistAppService",
               "name": "IWatchlistAppService",
               "methods": [
                 {
@@ -1363,7 +1363,7 @@
                 "typeSimple": "System.Void"
               },
               "allowAnonymous": false,
-              "implementFrom": "TvTracker.Watchlists.IWatchlistAppService"
+              "implementFrom": "JempaTV.Watchlists.IWatchlistAppService"
             }
           }
         }
@@ -3976,7 +3976,7 @@
     }
   },
   "types": {
-    "TvTracker.Series.CreateUpdateSerieDto": {
+    "JempaTV.Series.CreateUpdateSerieDto": {
       "baseType": null,
       "isEnum": false,
       "enumNames": null,
@@ -3997,7 +3997,7 @@
         }
       ]
     },
-    "TvTracker.Series.SerieDto": {
+    "JempaTV.Series.SerieDto": {
       "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Int32>",
       "isEnum": false,
       "enumNames": null,

@@ -20,5 +20,10 @@ namespace JempaTV.User
         {
             return _currentUser.Id;
         }
+
+        public string? GetCurrentUserEmail()
+        {
+            return _currentUser.Email;
+        }
     }
 }

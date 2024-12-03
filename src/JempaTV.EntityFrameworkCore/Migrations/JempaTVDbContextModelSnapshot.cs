@@ -43,7 +43,7 @@ namespace JempaTV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Calification");
+                    b.ToTable("Calification", (string)null);
                 });
 
             modelBuilder.Entity("JempaTV.Notifications.Notification", b =>
