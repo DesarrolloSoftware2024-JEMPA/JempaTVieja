@@ -11,6 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using JempaTV.BackgroundWorker;
 using Volo.Abp.BackgroundWorkers;
 using Volo.Abp;
+using Volo.Abp.Data;
+using JempaTV.OpenIddict;
+using Volo.Abp.Threading;
+using Volo.Abp.OpenIddict;
 
 namespace JempaTV;
 
@@ -29,10 +33,17 @@ public class JempaTVApplicationModule : AbpModule
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
-        var workerManager = context.ServiceProvider.GetRequiredService<IBackgroundWorkerManager>();
 
-        // Agregar el Background Worker
+        // Background Worker
+        var workerManager = context.ServiceProvider.GetRequiredService<IBackgroundWorkerManager>();
         workerManager.AddAsync(context.ServiceProvider.GetRequiredService<WatchListChangeWorker>());
+
+        // OpenIddict 
+        var serviceProvider = context.ServiceProvider;
+        var dataSeeder = serviceProvider.GetRequiredService<OpenIddictDataSeedContributor>();
+        AsyncHelper.RunSync(() => dataSeeder.SeedAsync(new DataSeedContext()));
+
+
     }
 
     public override void ConfigureServices(ServiceConfigurationContext context)
@@ -42,5 +53,6 @@ public class JempaTVApplicationModule : AbpModule
             options.AddMaps<JempaTVApplicationModule>();
         });
         context.Services.AddTransient<ISerieApiService, OmdbService>();
+        context.Services.AddTransient<IDataSeedContributor, OpenIddictDataSeedContributor>();
     }
 }

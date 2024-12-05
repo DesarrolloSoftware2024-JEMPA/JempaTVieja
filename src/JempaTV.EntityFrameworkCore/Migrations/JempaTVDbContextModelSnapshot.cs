@@ -43,7 +43,7 @@ namespace JempaTV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Calification", (string)null);
+                    b.ToTable("Calification");
                 });
 
             modelBuilder.Entity("JempaTV.Notifications.Notification", b =>
@@ -79,7 +79,7 @@ namespace JempaTV.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("User")
+                    b.Property<Guid?>("User")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -168,11 +168,8 @@ namespace JempaTV.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<Guid>("IdUsuario")
+                    b.Property<Guid?>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("User")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

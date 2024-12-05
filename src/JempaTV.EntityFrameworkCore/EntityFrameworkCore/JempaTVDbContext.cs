@@ -20,6 +20,7 @@ using JempaTV.Califications;
 using JempaTV.Notifications;
 using JempaTV.User;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using JempaTV.OpenIddict;
 
 
 namespace JempaTV.EntityFrameworkCore;
@@ -41,6 +42,7 @@ public class JempaTVDbContext :
     public DbSet<Notification> Notifications {  get; set; }
 
     private readonly CurrentUserService _currentUserService;
+    private readonly OpenIddictDataSeedContributor _openIddictDataSeedContributor;
 
     #region Entities from the modules
 
@@ -74,7 +76,9 @@ public class JempaTVDbContext :
     public JempaTVDbContext(DbContextOptions<JempaTVDbContext> options)
         : base(options)
     {
-        //_currentUserService = this.GetService<CurrentUserService>();
+        _currentUserService = this.GetService<CurrentUserService>();
+        _openIddictDataSeedContributor = this.GetService<OpenIddictDataSeedContributor>();
+
     }
 
     

@@ -79,12 +79,12 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
         var configurationSection = _configuration.GetSection("OpenIddict:Applications");
 
-
         //Console Test / Angular Client
-        var consoleAndAngularClientId = configurationSection["JempaTV_App:ClientId"];
+        //var consoleAndAngularClientId = configurationSection["JempaTV_App:ClientId"];
+        var consoleAndAngularClientId = _configuration.GetSection("JempaTV_App:ClientId").Value;
         if (!consoleAndAngularClientId.IsNullOrWhiteSpace())
         {
-            var consoleAndAngularClientRootUrl = configurationSection["JempaTV_App:RootUrl"]?.TrimEnd('/');
+            var consoleAndAngularClientRootUrl = _configuration.GetSection("JempaTV_App:RootUrl").Value?.TrimEnd('/');
             await CreateApplicationAsync(
                 name: consoleAndAngularClientId!,
                 type: OpenIddictConstants.ClientTypes.Public,
@@ -114,10 +114,10 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
 
         // Swagger Client
-        var swaggerClientId = configurationSection["JempaTV_Swagger:ClientId"];
+        var swaggerClientId = _configuration.GetSection("JempaTV_Swagger:ClientId").Value;
         if (!swaggerClientId.IsNullOrWhiteSpace())
         {
-            var swaggerRootUrl = configurationSection["JempaTV_Swagger:RootUrl"]?.TrimEnd('/');
+            var swaggerRootUrl = _configuration.GetSection("JempaTV_Swagger:RootUrl").Value?.TrimEnd('/');
 
             await CreateApplicationAsync(
                 name: swaggerClientId!,
