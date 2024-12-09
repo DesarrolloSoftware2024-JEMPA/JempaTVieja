@@ -15,8 +15,31 @@
           </a>
           }
           @if(hasLoggedIn){
-            <h3>Estas logeado</h3>
+            <h3>Bienvenido, {{getCurrentUserName()}}</h3>
+
+            <div class="notifications">
+              <h5 (abpInit)="getNotificationsFromUser()">Notificaciones: </h5>
+
+              <ngx-datatable
+              *ngIf="notifications"
+              class="material"
+              [rows]="notifications"
+              [columnMode]="'force'"
+              [headerHeight]="20"
+              [footerHeight]="20"
+              [rowClass]="getRowClass"
+              [rowWidth]="20"
+              [rowHeight]="'auto'">
+              
+              <ngx-datatable-column name="Título" prop="title"></ngx-datatable-column>
+              <ngx-datatable-column name="Descripción" prop="content"></ngx-datatable-column>
+        
+              </ngx-datatable>
+
+
+            </div>
           }
+          
       
         </div>
       </div>
