@@ -11,6 +11,8 @@ using Volo.Abp;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Identity;
 using Volo.Abp.OpenIddict.Applications;
 using Volo.Abp.OpenIddict.Scopes;
 using Volo.Abp.PermissionManagement;
@@ -30,6 +32,8 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     private readonly IOpenIddictScopeManager _scopeManager;
     private readonly IPermissionDataSeeder _permissionDataSeeder;
     private readonly IStringLocalizer<OpenIddictResponse> L;
+    private readonly IdentityRoleManager _roleManager;
+    private readonly IRepository<IdentityRole, Guid> _roleRepository;
 
     public OpenIddictDataSeedContributor(
         IConfiguration configuration,
@@ -38,7 +42,9 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         IOpenIddictScopeRepository openIddictScopeRepository,
         IOpenIddictScopeManager scopeManager,
         IPermissionDataSeeder permissionDataSeeder,
-        IStringLocalizer<OpenIddictResponse> l)
+        IStringLocalizer<OpenIddictResponse> l,
+        IdentityRoleManager roleManager,
+        IRepository<IdentityRole, Guid> roleRepository)
     {
         _configuration = configuration;
         _openIddictApplicationRepository = openIddictApplicationRepository;
@@ -47,14 +53,35 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         _scopeManager = scopeManager;
         _permissionDataSeeder = permissionDataSeeder;
         L = l;
+        _roleManager = roleManager;
+        _roleRepository = roleRepository;
+
     }
 
     [UnitOfWork]
     public virtual async Task SeedAsync(DataSeedContext context)
     {
+        await CreateRoleAsync("Admin");
+        await CreateRoleAsync("Client");
         await CreateScopesAsync();
         await CreateApplicationsAsync();
     }
+
+    public async Task CreateRoleAsync(string roleName)
+    {
+
+        // Verifica si el rol ya existe
+        if (await _roleRepository.FirstOrDefaultAsync(r => r.Name == roleName) != null)
+        {
+            return; // El rol ya existe
+        }
+
+        // Crea el rol
+        var role = new IdentityRole(Guid.NewGuid(), roleName);
+        await _roleManager.CreateAsync(role);
+
+    }
+
 
     private async Task CreateScopesAsync()
     {
