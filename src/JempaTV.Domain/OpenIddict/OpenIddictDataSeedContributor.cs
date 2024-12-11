@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using Volo.Abp;
 using Volo.Abp.Authorization.Permissions;
@@ -66,30 +68,32 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     {
 
         const string adminRoleName = "Admin";
-        const string adminPermissionName = "Identity.Roles.Manage";
+        string[] adminPermissionName = { "AbpIdentity.Users", "AbpIdentity.Roles", "AbpTenantManagement.Tenants" };
 
         const string clientRoleName = "Client";
-        const string clientPermissionName = "Identity.Roles.Default";
+        string[] clientPermissionName = {"AbpIdentity.Roles" };
 
         // Crea los roles
-        await CreateRoleAsync(adminRoleName);
-        await CreateRoleAsync(clientRoleName);
-
-        // Asigna a cada rol su respectivo permiso
-        await SetPermission(adminRoleName, adminPermissionName);
-        await SetPermission(clientRoleName, clientPermissionName);
+        await CreateRoleAsync(adminRoleName, adminPermissionName);
+        await CreateRoleAsync(clientRoleName, clientPermissionName);
 
         // Crea scopes y application clients
         await CreateScopesAsync();
         await CreateApplicationsAsync();
     }
 
-    public async Task SetPermission(string roleName, string permissionName)
+    public async Task SetPermission(IdentityRole role, string[] permissionName)
     {
-        await _permissionManager.SetForRoleAsync(roleName, permissionName, true);
+        foreach (var permission in permissionName)
+        {
+            await _permissionManager.SetForRoleAsync(role.Name, permission, true);
+
+            await _roleManager.AddClaimAsync(role, new Claim("Permission", permission));
+            
+        }
     }
 
-    public async Task CreateRoleAsync(string roleName)
+    public async Task CreateRoleAsync(string roleName, string[] permissionName)
     {
 
         // Verifica si el rol ya existe
@@ -100,8 +104,12 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
         // Crea el rol
         var role = new IdentityRole(Guid.NewGuid(), roleName);
-        if (roleName == "Client") { role.IsDefault = true; role.IsPublic = true; role.IsStatic = true; }
+
+        if (roleName == "Client") { role.IsDefault = true; role.IsPublic = true; }
+
         await _roleManager.CreateAsync(role);
+
+        await SetPermission(role, permissionName);
 
     }
 

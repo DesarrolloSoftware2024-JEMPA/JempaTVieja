@@ -15,6 +15,7 @@ using Volo.Abp.Data;
 using JempaTV.OpenIddict;
 using Volo.Abp.Threading;
 using Volo.Abp.OpenIddict;
+using Microsoft.Extensions.Options;
 
 namespace JempaTV;
 
@@ -52,6 +53,8 @@ public class JempaTVApplicationModule : AbpModule
         {
             options.AddMaps<JempaTVApplicationModule>();
         });
+
+
         context.Services.AddTransient<ISerieApiService, OmdbService>();
         context.Services.AddTransient<IDataSeedContributor, OpenIddictDataSeedContributor>();
     }
