@@ -18,7 +18,7 @@ using JempaTV.Series;
 using JempaTV.WatchLists;
 using JempaTV.Califications;
 using JempaTV.Notifications;
-using JempaTV.User;
+using JempaTV.Users;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using JempaTV.OpenIddict;
 
@@ -101,12 +101,19 @@ public class JempaTVDbContext :
 
         /* Configure your own tables/entities inside here */
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(JempaTVConsts.DbTablePrefix + "YourEntities", JempaTVConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        /*builder.Entity<YourEntity>(b =>
+        {
+            b.ToTable(JempaTVConsts.DbTablePrefix + "YourEntities", JempaTVConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            ...
+        });*/
+
+        builder.Entity<User>(b =>
+        {
+            b.ToTable(JempaTVConsts.DbTablePrefix + "Users", JempaTVConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            
+        });
 
         builder.Entity<Serie>(b =>
         {

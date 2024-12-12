@@ -17,7 +17,7 @@ using Volo.Abp.Emailing;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.TenantManagement;
-using JempaTV.User;
+using JempaTV.Users;
 using Volo.Abp.Data;
 using Volo.Abp.Threading;
 using JempaTV.OpenIddict;

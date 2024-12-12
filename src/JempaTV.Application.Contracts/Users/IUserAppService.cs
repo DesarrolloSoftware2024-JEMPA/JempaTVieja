@@ -7,10 +7,10 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Identity;
 
-namespace JempaTV.User
+namespace JempaTV.Users
 {
     public interface IUserAppService : IApplicationService
     {
-        Task<PagedResultDto<IdentityUserDto>> getAllUsers();
-    }
+        Task<PagedResultDto<IdentityUserDto>> GetAllUsers();
+    };
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Users;
 
-namespace JempaTV.User
+namespace JempaTV.Users
 {
     public class CurrentUserService
     {
