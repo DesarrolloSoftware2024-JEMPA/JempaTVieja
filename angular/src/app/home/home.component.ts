@@ -2,6 +2,7 @@ import { AuthService, PagedResultDto } from '@abp/ng.core';
 import { Component } from '@angular/core';
 import { ConfigStateService, ApplicationConfigurationDto } from '@abp/ng.core';
 import { NotificationDto, NotificationService } from '@proxy/notifications';
+import { WatchlistService } from '@proxy/watchlists';
 
 @Component({
   selector: 'app-home',

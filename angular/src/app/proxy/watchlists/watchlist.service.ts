@@ -15,5 +15,7 @@ export class WatchlistService {
     },
     { apiName: this.apiName,...config });
 
+  
+
   constructor(private restService: RestService) {}
 }

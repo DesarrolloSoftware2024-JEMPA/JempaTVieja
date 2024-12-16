@@ -25,5 +25,6 @@ namespace JempaTV.Users
         {
             return _currentUser.Email;
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JempaTV.Logs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,21 @@ namespace JempaTV.Users
 {
     public interface IUserAppService : IApplicationService
     {
+
+        Task setUserEmailConfiguration(bool emailNotification);
+
+        Task setProfilePicture(string profilePicture);
+
+        Task<string> getProfilePicture();
+
         Task<PagedResultDto<IdentityUserDto>> GetAllUsers();
+
+        Task<List<LogDto>> getApiStats();
+
+        Task<int> getErrorQuantity();
+
+        Task<List<LogDto>> getUserStats();
+
+        Task<List<LogDto>> getAllAuditLogs();
     };
 }

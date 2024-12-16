@@ -1,8 +1,10 @@
 using AutoMapper;
 using JempaTV.Califications;
+using JempaTV.Logs;
 using JempaTV.Notifications;
 using JempaTV.Series;
 using JempaTV.Users;
+using Volo.Abp.AuditLogging;
 using Volo.Abp.Users;
 
 
@@ -21,7 +23,7 @@ public class JempaTVApplicationAutoMapperProfile : Profile
         CreateMap<SerieDto, Serie>();
         CreateMap<Notification, NotificationDto>();
         CreateMap<NotificationDto, Notification>();
-        CreateMap<User, UserDto>();
-        CreateMap<UserDto, User>();
+        CreateMap<AuditLog, LogDto>();
+        CreateMap<LogDto, AuditLog>();
     }
 }

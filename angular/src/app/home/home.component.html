@@ -1,13 +1,12 @@
 <div class="row mb-3">
   <div class="col-xl-6 col-12 d-flex p-16">
-    <div class="card h-lg-100 w-100 overflow-hidden">
-      <div class="card-body">
-        <div class="starting-content ">
+    <div>
+      <div>
+        <div>
           @if(!hasLoggedIn){
           <h3>Bienvenido</h3>
           <p class="lead text-muted mb-2">
             Haz click en el boton para iniciar sesion:
-
           </p>
           <a (click)="login()" class="px-4 btn btn-primary mb-4" role="button">
             <i class="fa fa-sign-in"></i>
@@ -15,8 +14,8 @@
           </a>
           }
           @if(hasLoggedIn){
-            <h3>Bienvenido, {{getCurrentUserName()}}</h3>
-
+           
+            <!-- 
             <div class="notifications">
               <h5 (abpInit)="getNotificationsFromUser()">Notificaciones: </h5>
 
@@ -35,9 +34,10 @@
               <ngx-datatable-column name="Descripción" prop="content"></ngx-datatable-column>
         
               </ngx-datatable>
-
-
             </div>
+            -->
+
+
           }
           
       

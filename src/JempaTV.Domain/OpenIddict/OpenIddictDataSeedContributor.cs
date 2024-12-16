@@ -68,10 +68,32 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     {
 
         const string adminRoleName = "Admin";
-        string[] adminPermissionName = { "AbpIdentity.Users", "AbpIdentity.Roles", "AbpTenantManagement.Tenants" };
+        string[] adminPermissionName = {
+        "FeatureManagement.ManageHostFeatures",
+        "SettingManagement.Emailing",
+        "AbpIdentity.Roles.Update",
+        "SettingManagement.TimeZone",
+        "AbpIdentity.Users",
+        "AbpIdentity.Users.Create",
+        "AbpIdentity.Users.Delete",
+        "AbpIdentity.Roles.Create",
+        "AbpIdentity.Roles.ManagePermissions",
+        "AbpIdentity.Roles.Delete",
+        "AbpIdentity.Roles",
+        "SettingManagement.Emailing.Test",
+        "AbpIdentity.Users.ManagePermissions",
+        "AbpIdentity.Users.Update.ManageRoles",
+        "AbpIdentity.Users.Update",
+        "AbpTenantManagement.Tenants.Update",
+        "AbpTenantManagement.Tenants.Delete",
+        "AbpTenantManagement.Tenants.Create",
+        "AbpTenantManagement.Tenants",
+        "AbpTenantManagement.Tenants.ManageFeatures",
+        "AbpTenantManagement.Tenants.ManageConnectionStrings"
+        };
 
         const string clientRoleName = "Client";
-        string[] clientPermissionName = {"AbpIdentity.Roles" };
+        string[] clientPermissionName = { "SettingManagement.TimeZone" };
 
         // Crea los roles
         await CreateRoleAsync(adminRoleName, adminPermissionName);

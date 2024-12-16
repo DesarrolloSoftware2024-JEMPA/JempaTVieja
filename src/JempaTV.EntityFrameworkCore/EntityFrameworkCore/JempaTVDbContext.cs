@@ -76,8 +76,8 @@ public class JempaTVDbContext :
     public JempaTVDbContext(DbContextOptions<JempaTVDbContext> options)
         : base(options)
     {
-        _currentUserService = this.GetService<CurrentUserService>();
-        _openIddictDataSeedContributor = this.GetService<OpenIddictDataSeedContributor>();
+        //_currentUserService = this.GetService<CurrentUserService>();
+        //_openIddictDataSeedContributor = this.GetService<OpenIddictDataSeedContributor>();
 
     }
 
@@ -108,12 +108,12 @@ public class JempaTVDbContext :
             ...
         });*/
 
-        builder.Entity<User>(b =>
+        /*builder.Entity<User>(b =>
         {
             b.ToTable(JempaTVConsts.DbTablePrefix + "Users", JempaTVConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
             
-        });
+        });*/
 
         builder.Entity<Serie>(b =>
         {

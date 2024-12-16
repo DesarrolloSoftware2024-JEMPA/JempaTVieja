@@ -14,5 +14,6 @@ namespace JempaTV.Users
         public String? Surname { get; set; }
         public String? Email { get; set; }
         public String? PhoneNumber { get; set; }
+        public bool EmailNotification { get; set; }
     }
 }
