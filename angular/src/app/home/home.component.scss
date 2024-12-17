@@ -1,4 +1,27 @@
-/* Styles for the home component */
+.home {background-color: rgb(41, 41, 44);
+  width: 100%;
+  }
+
+.title{
+
+  width: 100%;  
+  font-size: 50px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(41, 41, 44);
+  padding: 5%;
+}
+.information {
+  color: rgb(255, 255, 255);
+  width: 100%;  
+  background-color: rgb(41, 41, 44);
+ padding: 5%;
+}
+.info-in {
+  color: rgb(255, 255, 255);
+  background-color: rgb(41, 41, 44);
+  padding: 5%;
+}   
+
 .card-bg-image {
   position: absolute;
   width: 630px;
@@ -6,6 +29,13 @@
   bottom: 0;
   right: 0;
   z-index: 1;
+}
+
+.title {
+  position: center;
+  margin-top: 10%;
+  margin: 10%;
+
 }
 
 .starting-content {
@@ -17,13 +47,7 @@
   margin: 2.5vw;
 }
 
-::ng-deep .row-color1 {
-  background-color: rgb(255, 255, 255);
-}
 
-::ng-deep .row-color2 {
-  background-color: rgb(234, 233, 233);
-}
 
 @media (min-width: 1199px) {
   .h-lg-100 {

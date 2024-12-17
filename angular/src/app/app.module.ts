@@ -24,7 +24,7 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
     AppRoutingModule,
     ThemeSharedModule,
     CoreModule,
-    ThemeBasicModule,
+    ThemeBasicModule
   ],
   providers: [
     APP_ROUTE_PROVIDER,
