@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import snq from 'snq';
 import { SharedModule } from '../shared/shared.module';
+import { UserService } from '@proxy/users';
+import { UserDto } from '@proxy/users';
 
 
 @Component({
@@ -23,6 +25,9 @@ import { SharedModule } from '../shared/shared.module';
 export class NavItemsComponent {
   currentUser$: Observable<CurrentUserDto> = this.configState.getOne$('currentUser');
   selectedTenant$ = this.sessionState.getTenant$();
+
+  user: UserDto;
+  id: `20da5f68-2055-b7a8-280b-3a16e8aed83d`;
 
   languages$: Observable<LanguageInfo[]> = this.configState.getDeep$('localization.languages');
 
@@ -60,7 +65,8 @@ export class NavItemsComponent {
     @Inject(NAVIGATE_TO_MANAGE_PROFILE) public navigateToManageProfile,
     private configState: ConfigStateService,
     private authService: AuthService,
-    private sessionState: SessionStateService
+    private sessionState: SessionStateService,
+    private userService: UserService
   ) {}
 
   onChangeLang(cultureName: string) {
@@ -73,5 +79,10 @@ export class NavItemsComponent {
 
   logout() {
     this.authService.logout().subscribe();
+  }
+
+  public getUser() {
+      this.userService.get(this.id).subscribe(response => {this.user = response; 
+        console.log(response)});
   }
 }

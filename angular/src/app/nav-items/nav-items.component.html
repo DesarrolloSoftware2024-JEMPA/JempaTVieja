@@ -1,4 +1,4 @@
-<ul class="navbar-nav">
+<ul (abpInit)="getUser()" class="navbar-nav">
     <!-- BUSQUEDA -->
 
 
@@ -15,6 +15,7 @@
         class="dropdown"
         #currentUserDropdown="ngbDropdown"
         display="static"
+        
       >
         <a
           ngbDropdownToggle
