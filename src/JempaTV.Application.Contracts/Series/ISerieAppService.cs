@@ -14,6 +14,8 @@ namespace JempaTV.Series
     {
         Task<ICollection<SerieDto>> SearchAsync(string title);
 
+        Task<SerieDto> SearchImdbId(string imdbId);
+
         Task PersistSeriesAsync(string title);
 
         Task<Collection<SerieDto>> GetInternalSeries();
