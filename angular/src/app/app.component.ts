@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ReplaceableComponentsService } from '@abp/ng.core';
 import { eThemeBasicComponents } from '@abp/ng.theme.basic';
-import { PrimaryLayoutComponent } from './primary-layout/primary-layout.component';
-
+import { LogoComponent } from './logo/logo.component';
+import { RoutesComponent } from './routes/routes.component';
+import { NavItemsComponent } from './nav-items/nav-items.component';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,19 @@ import { PrimaryLayoutComponent } from './primary-layout/primary-layout.componen
   `,
 })
 export class AppComponent {
-  constructor(private replaceableComponent: ReplaceableComponentsService) {
-    /*this.replaceableComponent.add({
-      component: PrimaryLayoutComponent,
-      key: eThemeBasicComponents.ApplicationLayout,
-    });*/
-  }
+  constructor(private replaceableComponents: ReplaceableComponentsService) { 
+    this.replaceableComponents.add({
+        component: LogoComponent,
+        key: eThemeBasicComponents.Logo,
+      });
+      this.replaceableComponents.add({
+        component: RoutesComponent,
+        key: eThemeBasicComponents.Routes,
+      });
+      this.replaceableComponents.add({
+        component: NavItemsComponent,
+        key: eThemeBasicComponents.NavItems,
+      });
+      
+    }
 }

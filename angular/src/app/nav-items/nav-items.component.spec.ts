@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrimaryLayoutComponent } from './primary-layout.component';
+import { NavItemsComponent } from './nav-items.component';
 
-describe('PrimaryLayoutComponent', () => {
-  let component: PrimaryLayoutComponent;
-  let fixture: ComponentFixture<PrimaryLayoutComponent>;
+describe('NavItemsComponent', () => {
+  let component: NavItemsComponent;
+  let fixture: ComponentFixture<NavItemsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PrimaryLayoutComponent]
+      imports: [NavItemsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PrimaryLayoutComponent);
+    fixture = TestBed.createComponent(NavItemsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
