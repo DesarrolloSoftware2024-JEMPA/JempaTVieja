@@ -27,7 +27,7 @@ export class NavItemsComponent {
   selectedTenant$ = this.sessionState.getTenant$();
 
   user: UserDto;
-  id: `20da5f68-2055-b7a8-280b-3a16e8aed83d`;
+  userProfilePicture: unknown;
 
   languages$: Observable<LanguageInfo[]> = this.configState.getDeep$('localization.languages');
 
@@ -81,8 +81,13 @@ export class NavItemsComponent {
     this.authService.logout().subscribe();
   }
 
-  public getUser() {
+  /*public getUser() {
       this.userService.get(this.id).subscribe(response => {this.user = response; 
         console.log(response)});
+  }*/
+
+  public getProfilePicture(){
+    this.userService.getProfilePicture().subscribe(response => this.userProfilePicture = response)
+    
   }
 }
