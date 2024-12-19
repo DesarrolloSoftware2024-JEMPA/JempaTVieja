@@ -40,6 +40,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./watchlist/watchlist.module').then(m => m.WatchlistModule),
   },
+  {
+    path: 'my-notifications',
+    loadChildren: () =>
+      import('./notification/notification-routing.module').then(m => m.NotificationRoutingModule),
+  },
 ];
 
 @NgModule({

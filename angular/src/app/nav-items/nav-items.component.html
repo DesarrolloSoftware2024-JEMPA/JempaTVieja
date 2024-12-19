@@ -9,6 +9,9 @@
           >{{ 'AbpAccount::Login' | abpLocalization }}</a
         >
       </ng-template>
+      <div class="notifications" *ngIf="(currentUser$ | async)?.isAuthenticated" >
+        <i class="fa fa-bell" aria-hidden="true" style="color:white" routerLink="/my-notifications" ></i>
+      </div>
       <div
         *ngIf="(currentUser$ | async)?.isAuthenticated; else loginBtn"
         ngbDropdown

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JempaTV.Califications;
 using JempaTV.WatchLists;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -88,6 +89,22 @@ namespace JempaTV.Notifications
             return notificationDtoList;
         }
         
+        public async Task<string> unreadNotifications()
+        {
+            var notificationDtoList = await GetNotificationFromUser();
+
+            var response = false;
+
+            foreach (var notif in notificationDtoList)
+            {
+                if (notif.Read == false)
+                {
+                    response = true;
+                }
+            }
+
+            return JsonConvert.SerializeObject(response);
+        }
     }
 
 

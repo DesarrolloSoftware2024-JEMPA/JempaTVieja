@@ -1,5 +1,5 @@
 <div class="home">
-  <div class="col-xl-6 col-12 d-flex p-16">
+  <div>
     
       
         <div>
@@ -20,56 +20,21 @@
             {{ 'AbpAccount::Login' | abpLocalization }}
           </a>
           }
+
           @if(hasLoggedIn){
-           
+
+            <div (abpInit)="getSeriesList()">
+
             <button routerLink="/series">Buscar serie</button>
 
             <button routerLink="/watchlist">Mi Watchlist</button>
 
-            <div (abpInit)="getSeriesList(this.imdbIds)"> 
-              <ngx-datatable
-              *ngIf="series.length"
-              class="material"
-              [rows]="series"
-              [columnMode]="'force'"
-              [headerHeight]="50"
-              [footerHeight]="50"
-              [rowHeight]="'auto'">
-              <ngx-datatable-column name="Título" prop="title"></ngx-datatable-column>
-              <ngx-datatable-column name="Año" prop="year"></ngx-datatable-column>
-              <ngx-datatable-column name="Poster" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    <img *ngIf="'row.Poster !== null'" [src]="row.poster" alt="{{ row.title }}" width="100"/>
-                  </ng-template>
-              </ngx-datatable-column>
-          </ngx-datatable>
-        </div>
-
-            <!-- 
-            <div class="notifications">
-              <h5 (abpInit)="getNotificationsFromUser()">Notificaciones: </h5>
-
-              <ngx-datatable
-              *ngIf="notifications"
-              class="material"
-              [rows]="notifications"
-              [columnMode]="'force'"
-              [headerHeight]="20"
-              [footerHeight]="20"
-              [rowClass]="getRowClass"
-              [rowWidth]="20"
-              [rowHeight]="'auto'">
-              
-              <ngx-datatable-column name="Título" prop="title"></ngx-datatable-column>
-              <ngx-datatable-column name="Descripción" prop="content"></ngx-datatable-column>
-        
-              </ngx-datatable>
+            <div class="mySwiper">
+              <div id="swiper-wrapper">{{(this.series[1].title | async)}}</div>
+            </div>  
             </div>
-            -->
-
-
-          }
-          
-      
-        </div>
+           
+             
+      }
+      </div>
       </div>
