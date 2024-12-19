@@ -1,4 +1,4 @@
-<ul (abpInit)="getUser()" class="navbar-nav">
+<ul (abpInit)="getProfilePicture()" class="navbar-nav">
     <!-- BUSQUEDA -->
 
 
@@ -9,6 +9,9 @@
           >{{ 'AbpAccount::Login' | abpLocalization }}</a
         >
       </ng-template>
+      <div class="notifications" *ngIf="(currentUser$ | async)?.isAuthenticated" >
+        <i class="fa fa-bell" aria-hidden="true" style="color:white" routerLink="/my-notifications" ></i>
+      </div>
       <div
         *ngIf="(currentUser$ | async)?.isAuthenticated; else loginBtn"
         ngbDropdown
@@ -27,16 +30,18 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
+        <img [src]="userProfilePicture" alt="profile-picture" width="30px">
           <small *ngIf="(selectedTenant$ | async)?.name as tenantName"
             ><i>{{ tenantName }}</i>\</small
           >
-          <strong>{{ (currentUser$ | async)?.userName }}</strong>
+        
         </a>
         <div
           class="dropdown-menu dropdown-menu-right border-0 shadow-sm"
           aria-labelledby="dropdownMenuLink"
           [class.d-block]="smallScreen && currentUserDropdown.isOpen()"
         >
+          <b style="margin-left: 10%;">{{ (currentUser$ | async)?.userName }}</b>
           <a class="dropdown-item pointer" (click)="navigateToManageProfile()"
             ><i class="fa fa-cog mr-1 p-1"></i>{{ 'AbpAccount::MyAccount' |
             abpLocalization }}</a

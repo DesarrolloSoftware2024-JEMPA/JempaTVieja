@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 
 .home {background-color: rgb(41, 41, 44);
   width: 100%;
   }
+=======
+.home {
+      background-color: rgb(41, 41, 44);
+      width: 100%;}
+>>>>>>> e624273f2a6e958f575e2cde1bfd6f06733f9593
 
 .title{
 
@@ -11,12 +17,14 @@
   background-color: rgb(41, 41, 44);
   padding: 5%;
 }
+
 .information {
   color: rgb(255, 255, 255);
   width: 100%;  
   background-color: rgb(41, 41, 44);
  padding: 5%;
 }
+
 .info-in {
   color: rgb(255, 255, 255);
   background-color: rgb(41, 41, 44);
@@ -44,11 +52,17 @@
   z-index: 2;
 }
 
-.notifications{
-  margin: 2.5vw;
+swiper-slide{
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    text-align: center;
 }
 
+swiper-container{
+  width: 40%;
 
+}
 
 @media (min-width: 1199px) {
   .h-lg-100 {
@@ -62,6 +76,7 @@
   }
 }
 
+<<<<<<< HEAD
 /* Keyframes de la animación */
 @-webkit-keyframes scale-up-bl {
   0% {
@@ -140,3 +155,5 @@
     opacity: 1;
   }
 }
+=======
+>>>>>>> e624273f2a6e958f575e2cde1bfd6f06733f9593

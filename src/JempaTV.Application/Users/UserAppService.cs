@@ -21,6 +21,9 @@ using Volo.Abp.AuditLogging;
 using JempaTV.Logs;
 using Volo.Abp.Account;
 using Volo.Abp.Data;
+using System.Text.Json.Nodes;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace JempaTV.Users
 {
@@ -79,7 +82,7 @@ namespace JempaTV.Users
                 userProfilePicture = user.GetProperty<string>("profilePicture");
             }
 
-            return userProfilePicture;
+            return JsonConvert.SerializeObject(userProfilePicture);
 
         }
 

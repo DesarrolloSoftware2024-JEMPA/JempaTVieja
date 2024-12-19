@@ -51,6 +51,13 @@ export class SerieService {
       params: { title },
     },
     { apiName: this.apiName,...config });
+
+    searchImdbId = (imdbId: string, config?: Partial<Rest.Config>) =>
+      this.restService.request<any, SerieDto>({
+        method: 'POST',
+        url: `/api/app/serie/search-imdb-id/${imdbId}`,
+      },
+      { apiName: this.apiName,...config });
   
 
   update = (id: number, input: CreateUpdateSerieDto, config?: Partial<Rest.Config>) =>

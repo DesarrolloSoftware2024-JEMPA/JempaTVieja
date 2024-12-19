@@ -1,5 +1,5 @@
 <div class="home">
-  <div class="col-xl-6 col-12 d-flex p-16">
+  <div>
     
       
         <div>
@@ -20,28 +20,20 @@
             {{ 'AbpAccount::Login' | abpLocalization }}
           </a>
           }
-          @if(hasLoggedIn){
-           
-            <!-- 
-            <div class="notifications">
-              <h5 (abpInit)="getNotificationsFromUser()">Notificaciones: </h5>
 
-              <ngx-datatable
-              *ngIf="notifications"
-              class="material"
-              [rows]="notifications"
-              [columnMode]="'force'"
-              [headerHeight]="20"
-              [footerHeight]="20"
-              [rowClass]="getRowClass"
-              [rowWidth]="20"
-              [rowHeight]="'auto'">
-              
-              <ngx-datatable-column name="Título" prop="title"></ngx-datatable-column>
-              <ngx-datatable-column name="Descripción" prop="content"></ngx-datatable-column>
-        
-              </ngx-datatable>
+          @if(hasLoggedIn){
+
+            <div (abpInit)="getSeriesList()">
+
+            <button routerLink="/series">Buscar serie</button>
+
+            <button routerLink="/watchlist">Mi Watchlist</button>
+
+            <div class="mySwiper">
+              <div id="swiper-wrapper">{{(this.series[1].title | async)}}</div>
+            </div>  
             </div>
+<<<<<<< HEAD
             -->
 
 
@@ -50,3 +42,10 @@
       
         </div>
 
+=======
+           
+             
+      }
+      </div>
+      </div>
+>>>>>>> e624273f2a6e958f575e2cde1bfd6f06733f9593

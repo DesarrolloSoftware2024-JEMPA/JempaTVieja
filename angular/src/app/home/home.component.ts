@@ -1,8 +1,11 @@
-import { AuthService, PagedResultDto } from '@abp/ng.core';
+import { AuthService } from '@abp/ng.core';
 import { Component } from '@angular/core';
-import { ConfigStateService, ApplicationConfigurationDto } from '@abp/ng.core';
-import { NotificationDto, NotificationService } from '@proxy/notifications';
-import { WatchlistService } from '@proxy/watchlists';
+import { ConfigStateService  } from '@abp/ng.core';
+import { SerieDto, SerieService } from '@proxy/series';
+import { register } from "swiper/element/bundle";
+import Swiper from 'swiper';
+
+register()
 
 @Component({
   selector: 'app-home',
@@ -11,17 +14,16 @@ import { WatchlistService } from '@proxy/watchlists';
 })
 export class HomeComponent {
 
-  private notifications: PagedResultDto<NotificationDto>; 
+  public imdbIds = ["tt5753856","tt5607976","tt11912196","tt19231492","tt4159076","tt0204993"];
 
+  public series = [] as SerieDto[];
 
   get hasLoggedIn(): boolean {
     return this.authService.isAuthenticated
   }
 
-  constructor(private authService: AuthService, private config: ConfigStateService, private notificationService: NotificationService) {
-
+  constructor(private authService: AuthService, private config: ConfigStateService, private serieService: SerieService) {
   }
-
 
   login() {
     this.authService.navigateToLogin();
@@ -29,7 +31,6 @@ export class HomeComponent {
 
   getCurrentUserName(){
     const currentUserName = this.config.getOne("currentUser").userName;
-    
     return currentUserName;
   }
 
@@ -38,19 +39,59 @@ export class HomeComponent {
     console.log(currentUserId);
     return currentUserId;
   }
+  
 
-  getNotificationsFromUser(){
-   this.notificationService
-   .getNotifications()
-   .subscribe(notifications => this.notifications = notifications);
+  getSerieImdbId(imdbId: string) {
+    var serieDto: SerieDto;
+    this.serieService.searchImdbId(imdbId).subscribe(res => {
+      serieDto = res;
+      this.series.push(serieDto);
+    });
   }
 
-  getRowClass = (row) => {    
-    console.log(row.read)
-    return {
-      'row-color1': row.read == false,
-      'row-color2': row.read == true,
-    };
-   }
+  getSeriesList(imdbId:string[]){
+    imdbId.forEach(id => {
+      this.getSerieImdbId(id)})
+  }
 
+  async  fetchProductos(){
+    await this.getSeriesList(this.imdbIds);
+    console.log(this.series)
+    const swiperWrapper = document.getElementById('swiper-wrapper');
+    this.series.forEach(serie => {
+      console.log(serie)
+      const slide = document.createElement('div');
+                      slide.classList.add('swiper-slide');
+  
+                      slide.innerHTML = 
+                          `<div>
+                              <h1>${serie.title}</h1>
+                          </div>
+                          <img src="${serie.poster} alt="jempatv poster">`
+                      ;
+                      swiperWrapper.appendChild(slide)
+      });
+  
+      new Swiper (".mySwiper", {
+        effect: "coverflow",
+        centeredSlides: true,
+        slidesPerView: "auto",
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,},
+        coverflowEffect: {
+            depth:500,
+            modifier:1,
+            slideShadows: true,
+            rotate:0,
+            stretch:0
+        }
+  
+        ,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }})
+    }
 }

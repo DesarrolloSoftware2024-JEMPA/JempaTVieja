@@ -30,6 +30,21 @@ const routes: Routes = [
     loadChildren: () =>
       import('./serie/serie.module').then(m => m.SerieModule),
   },
+  {
+    path: 'api-management',
+    loadChildren: () =>
+      import('./api-management/api-management.module').then(m => m.ApiManagementModule),
+  },
+  {
+    path: 'watchlist',
+    loadChildren: () =>
+      import('./watchlist/watchlist.module').then(m => m.WatchlistModule),
+  },
+  {
+    path: 'my-notifications',
+    loadChildren: () =>
+      import('./notification/notification-routing.module').then(m => m.NotificationRoutingModule),
+  },
 ];
 
 @NgModule({

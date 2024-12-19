@@ -13,6 +13,7 @@ import snq from 'snq';
 import { SharedModule } from '../shared/shared.module';
 import { UserService } from '@proxy/users';
 import { UserDto } from '@proxy/users';
+import { NotificationService } from '@proxy/notifications';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class NavItemsComponent {
   selectedTenant$ = this.sessionState.getTenant$();
 
   user: UserDto;
-  id: `20da5f68-2055-b7a8-280b-3a16e8aed83d`;
+  userProfilePicture: unknown;
+  unreadNotifications: boolean = false;
 
   languages$: Observable<LanguageInfo[]> = this.configState.getDeep$('localization.languages');
 
@@ -66,7 +68,8 @@ export class NavItemsComponent {
     private configState: ConfigStateService,
     private authService: AuthService,
     private sessionState: SessionStateService,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService,
   ) {}
 
   onChangeLang(cultureName: string) {
@@ -81,8 +84,12 @@ export class NavItemsComponent {
     this.authService.logout().subscribe();
   }
 
-  public getUser() {
-      this.userService.get(this.id).subscribe(response => {this.user = response; 
-        console.log(response)});
+  public getProfilePicture(){
+    this.userService.getProfilePicture().subscribe(response => this.userProfilePicture = response)
+    
+  }
+
+  public hasUnreadNotifications(){
+    this.notificationService.unreadNotifications().subscribe(res => {this.unreadNotifications = res; console.log(res)});
   }
 }

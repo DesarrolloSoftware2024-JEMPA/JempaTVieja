@@ -59,6 +59,7 @@
               >
             </div>
           </div>
+          
         </div>
   
         <div
@@ -94,6 +95,18 @@
                 {{ 'AbpTenantManagement::Tenants' | abpLocalization }}</a
               >
             </div>
+          </div>
+          <div ngbDropdownToggle [class.dropdown-toggle]="false">
+            <a
+              abpEllipsis="210px"
+              [abpEllipsisEnabled]="!smallScreen"
+              role="button"
+              class="btn d-block text-start dropdown-toggle"
+              routerLink="/api-management"
+            >
+              <i class="fa fa-film"></i>
+              Estadisticas API
+            </a>
           </div>
         </div>
       </div>

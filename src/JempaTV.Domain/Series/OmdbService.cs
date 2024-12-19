@@ -93,5 +93,53 @@ namespace JempaTV.Series
 
         }
 
+        public async Task<SerieDto> GetSeriesAsyncImdbId(string imdbId)
+        {
+
+            try
+            {
+                using HttpClient client = new();
+
+                //Formamos la url con los datos
+                string url = $"{omdbUrl}?i={imdbId}&apikey={apiKey}&type=series&page=1";
+                //Obtenemos la respuesta de forma asincrona
+                var response = await client.GetAsync(url);
+
+                //Pasamos la respuesta a un JSON
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                //Deserializamos el JSON a un Objeto
+                var searchResponse = JsonConvert.DeserializeObject<OmdbSerie>(jsonResponse);
+
+                if (searchResponse == null)
+                {
+                    throw new Exception("Error al convertir los datos de la API");
+                }
+
+                //Finalmente obtenemos la lista de series similares
+                var serie = searchResponse ?? new OmdbSerie();
+
+                var serieDto = new SerieDto
+                    {
+                        Id = Id,
+                        Title = serie.Title,
+                        ImdbID = serie.ImdbID,
+                        Actors = serie.Actors,
+                        Director = serie.Director,
+                        Year = serie.Year,
+                        Plot = serie.Plot,
+                        Poster = serie.Poster
+                    };
+
+                return serieDto;
+
+            }
+            catch (HttpRequestException e)
+            {
+
+                throw new Exception("Error al acceder a los datos de la API: ", e);
+            }
+
+        }
     }
 }
