@@ -1,40 +1,39 @@
 <div class="home">
   <div>
-    
-      
-        <div>
-          @if(!hasLoggedIn){
-          <h3 class="title">Bienvenido</h3>
-        <div class="information">
-         <p>Somos JempaTV, nos dedicamos a brindar un servicio de seguimiento para tus series y peliculas favoritas.
-          Aqui podras suscribirte y acceder a toda la informacion sobre</p> 
+    <div>
+      @if(!hasLoggedIn){
+      <h3 class="title">Bienvenido</h3>
+      <div class="information">
+        <p>
+          Somos JempaTV, nos dedicamos a brindar un servicio de seguimiento para tus series y
+          peliculas favoritas. Aqui podras suscribirte y acceder a toda la informacion sobre
+        </p>
+      </div>
 
-        </div>
+      <p class="info-in">
+        Iniciar sesion o registrate para disfrutar tus series y peliculas favoritas
+      </p>
+      <a (click)="login()" class="px-4 btn btn-primary mb-4" role="button">
+        <i class="fa fa-sign-in"></i>
+        {{ 'AbpAccount::Login' | abpLocalization }}
+      </a>
+      } @if(hasLoggedIn){
 
+      <div (abpInit)="getCarousel(this.imdbIds)">
+        <button routerLink="/series">Buscar serie</button>
 
-          <p class="info-in">
-            Iniciar sesion o registrate para disfrutar tus series y peliculas favoritas
-          </p>
-          <a (click)="login()" class="px-4 btn btn-primary mb-4" role="button">
-            <i class="fa fa-sign-in"></i>
-            {{ 'AbpAccount::Login' | abpLocalization }}
-          </a>
-          }
+        <button routerLink="/watchlist">Mi Watchlist</button>
 
-          @if(hasLoggedIn){
-
-            <div (abpInit)="getSeriesList()">
-
-            <button routerLink="/series">Buscar serie</button>
-
-            <button routerLink="/watchlist">Mi Watchlist</button>
-
-            <div class="mySwiper">
-              <div id="swiper-wrapper">{{(this.series[1].title | async)}}</div>
-            </div>  
-            </div>
-           
-             
+        <swiper-container loop="true">
+          <swiper-slide id="{{ this.imdbIds[0] }}"></swiper-slide>
+          <swiper-slide id="{{ this.imdbIds[1] }}"></swiper-slide>
+          <swiper-slide id="{{ this.imdbIds[2] }}"></swiper-slide>
+          <swiper-slide id="{{ this.imdbIds[3] }}"></swiper-slide>
+          <swiper-slide id="{{ this.imdbIds[4] }}"></swiper-slide>
+          <swiper-slide id="{{ this.imdbIds[5] }}"></swiper-slide>
+        </swiper-container>
+      </div>
       }
-      </div>
-      </div>
+    </div>
+  </div>
+</div>
