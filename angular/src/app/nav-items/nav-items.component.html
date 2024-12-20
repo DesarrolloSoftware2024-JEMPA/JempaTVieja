@@ -30,7 +30,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-        <img [src]="userProfilePicture" alt="profile-picture" width="30px">
+        <img [src]="userProfilePicture ?? this.defaultProfilePicture" alt="profile-picture" width="30px">
           <small *ngIf="(selectedTenant$ | async)?.name as tenantName"
             ><i>{{ tenantName }}</i>\</small
           >

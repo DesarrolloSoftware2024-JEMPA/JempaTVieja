@@ -30,6 +30,7 @@ export class NavItemsComponent {
   user: UserDto;
   userProfilePicture: unknown;
   unreadNotifications: boolean = false;
+  defaultProfilePicture: string = "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png";
 
   languages$: Observable<LanguageInfo[]> = this.configState.getDeep$('localization.languages');
 
