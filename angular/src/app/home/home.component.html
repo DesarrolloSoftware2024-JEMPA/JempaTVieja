@@ -1,57 +1,13 @@
 <div class="home">
   <div>
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
         />
       
-        <div>
-          @if(!hasLoggedIn){
-          <h3 class="text-focus-in">Bienvenido</h3>
-        <div class="scale-up-bl">
-         <p>Somos JempaTV, nos dedicamos a brindar un servicio de seguimiento para tus series y peliculas favoritas.
-          Aqui podras suscribirte y acceder a toda la informacion sobre</p> 
-
-        </div>
-
-
-          <p class="scale-up-bl">
-            Iniciar sesion o registrate para disfrutar tus series y peliculas favoritas
-          </p>
-          <a (click)="login()" class="px-4 btn btn-primary mb-4" role="button">
-            <i class="fa fa-sign-in"></i>
-            {{ 'AbpAccount::Login' | abpLocalization }}
-          </a>
-          }
-
-          @if(hasLoggedIn){
-           
-
-
-        <div (abpinit)="getSeriesList()">
-          
-          <div class="swiper-container" id="swiper-container">
-            <div class="swiper-wrapper" id="swiper-wrapper">
-              <div class="swiper-slide" id="swiper-slide" *ngFor="let serie of series">
-                <h1>{{ serie.title }}</h1>
-                <img [src]="serie.poster" [alt]="'Poster de ' + serie.title">
-              </div>
-            </div>
-          </div>
         
-            <button routerLink="/series">Buscar serie</button>
-
-            <button routerLink="/watchlist">Mi Watchlist</button>
-        </div>
-             
-      }
-      </div>
-      </div>
-     
-=======
-    <div>
       @if(!hasLoggedIn){
       <h3 class="title">Bienvenido</h3>
       <div class="information">
@@ -70,22 +26,29 @@
       </a>
       } @if(hasLoggedIn){
 
-      <div (abpInit)="getCarousel(this.imdbIds)">
+      
         <button routerLink="/series">Buscar serie</button>
 
         <button routerLink="/watchlist">Mi Watchlist</button>
 
-        <swiper-container loop="true">
-          <swiper-slide id="{{ this.imdbIds[0] }}"></swiper-slide>
-          <swiper-slide id="{{ this.imdbIds[1] }}"></swiper-slide>
-          <swiper-slide id="{{ this.imdbIds[2] }}"></swiper-slide>
-          <swiper-slide id="{{ this.imdbIds[3] }}"></swiper-slide>
-          <swiper-slide id="{{ this.imdbIds[4] }}"></swiper-slide>
-          <swiper-slide id="{{ this.imdbIds[5] }}"></swiper-slide>
-        </swiper-container>
-      </div>
+        <swiper-container style="width: 500px;" loop="true" autoplay  effect="coverflow" centeredSlides="true"
+        coverflowEffect="{
+          depth:500,
+          modifer:1,
+          slidesShadows: true,
+          rotate:0,
+          stretch:0}" 
+          navigation="{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }"
+        slidesPerView="auto">
+          <swiper-slide  *ngFor="let serie of series">
+            <h1> {{serie.title}}</h1>
+            <img src="{{serie.poster}}">
+          </swiper-slide>
+          </swiper-container>
       }
-    </div>
+    
   </div>
 </div>
->>>>>>> e8895a6f41c75a9ac586737dfc1cd56250dfb44f
