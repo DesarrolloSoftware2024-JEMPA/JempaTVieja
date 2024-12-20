@@ -1,6 +1,10 @@
 <div class="home">
   <div>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+        />
       
         <div>
           @if(!hasLoggedIn){
@@ -22,30 +26,26 @@
           }
 
           @if(hasLoggedIn){
+           
 
-            <div (abpInit)="getSeriesList()">
 
+        <div (abpinit)="getSeriesList()">
+          
+          <div class="swiper-container" id="swiper-container">
+            <div class="swiper-wrapper" id="swiper-wrapper">
+              <div class="swiper-slide" id="swiper-slide" *ngFor="let serie of series">
+                <h1>{{ serie.title }}</h1>
+                <img [src]="serie.poster" [alt]="'Poster de ' + serie.title">
+              </div>
+            </div>
+          </div>
+        
             <button routerLink="/series">Buscar serie</button>
 
             <button routerLink="/watchlist">Mi Watchlist</button>
-
-            <div class="mySwiper">
-              <div id="swiper-wrapper">{{(this.series[1].title | async)}}</div>
-            </div>  
-            </div>
-<<<<<<< HEAD
-            -->
-
-
-          }
-          
-      
         </div>
-
-=======
-           
              
       }
       </div>
       </div>
->>>>>>> e624273f2a6e958f575e2cde1bfd6f06733f9593
+     
