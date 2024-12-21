@@ -7,9 +7,18 @@ export interface CreateUpdateSerieDto {
   imdbID?: string;
 }
 
+export interface CalificationDto {
+  idSerie: number;
+  valor: number;
+  comentario?: string;
+}
+
 export interface SerieDto extends EntityDto<number> {
   title?: string;
   year?: string;
   poster?: string;
   imdbID?: string;
+  plot?:string;
+  actors?:string;
+  calification?:CalificationDto;
 }

@@ -1,4 +1,4 @@
-import type { CreateUpdateSerieDto, SerieDto } from './models';
+import type { CalificationDto, CreateUpdateSerieDto, SerieDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
@@ -67,6 +67,13 @@ export class SerieService {
       body: input,
     },
     { apiName: this.apiName,...config });
+
+    getCalifications = (config?: Partial<Rest.Config>) =>
+      this.restService.request<any, CalificationDto[]>({
+        method: 'GET',
+        url: `/api/app/serie/califications`,
+      },
+      { apiName: this.apiName,...config });
 
   constructor(private restService: RestService) {}
 }

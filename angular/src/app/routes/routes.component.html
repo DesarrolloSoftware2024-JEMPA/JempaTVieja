@@ -14,6 +14,7 @@
         class="nav-link dropdown-toggle"
         data-toggle="dropdown"
         href="javascript:void(0)"
+        *ngIf="(currentUser$ | async)?.isAuthenticated"
       >
        <!--<i class="fas fa-wrench"></i>-->
         {{ 'AbpUiNavigation::Menu:Administration' | abpLocalization }}

@@ -1,1 +1,47 @@
-<p>watchlists works!</p>
+<div (abpInit)="getUserCalifications()">
+    <div *ngIf="this.watchlist !== null" class="container">
+        <ngx-datatable
+        class="material"
+        [rows]="watchlist"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [bac]
+        
+      >
+
+      <ngx-datatable-column name="Poster" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <img *ngIf="'row.Poster !== null'" [src]="row.poster" alt="{{ row.title }}" width="100"/>
+        </ng-template>
+      </ngx-datatable-column>
+      
+      <ngx-datatable-column name="Título" prop="title"></ngx-datatable-column>
+
+      <ngx-datatable-column name="Año" prop="year"></ngx-datatable-column>
+
+        <ngx-datatable-column name="Calificacion">
+          <ng-template let-row='row' ngx-datatable-cell-template >
+            <div style="border:solid 1px #ddd;margin:5px;padding:3px" *ngIf="getRowCalification(row)!==undefined">
+              <div style="background:#999;height:10px" [style.width]="(getRowCalification(row).valor*100)/5 + '%'"></div>
+            </div>
+            <div *ngIf="getRowCalification(row)===undefined">
+              <button class="btn border text-s">
+                Calificar
+              </button>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Tu comentario">
+          <ng-template let-row='row' ngx-datatable-cell-template >
+            <div *ngIf="getRowCalification(row)!==undefined">
+              "{{getRowCalification(row).comentario}}"
+            </div>
+            <div *ngIf="getRowCalification(row)===undefined"></div>
+          </ng-template>
+        </ngx-datatable-column>
+
+      </ngx-datatable>
+    </div>
+</div>
