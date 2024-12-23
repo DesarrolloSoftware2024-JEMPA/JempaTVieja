@@ -26,7 +26,7 @@
               <div style="background:#999;height:10px" [style.width]="(getRowCalification(row).valor*100)/5 + '%'"></div>
             </div>
             <div *ngIf="getRowCalification(row)===undefined">
-              <button class="btn border text-s">
+              <button class="btn border text-s" [routerLink]="getRowUrl(row)">
                 Calificar
               </button>
             </div>

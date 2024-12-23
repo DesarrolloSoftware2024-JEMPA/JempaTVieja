@@ -12,9 +12,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 })
 export class WatchlistsComponent implements OnInit {
 
-  public watchlist = [] as SerieDto[]
-  public califications = [] as CalificationDto[];
+  public watchlist = [] as SerieDto[];
 
+  public califications = [] as CalificationDto[];
 
   constructor (private watchlistService: WatchlistService, private serieService: SerieService){
 
@@ -43,6 +43,12 @@ export class WatchlistsComponent implements OnInit {
         return calif
       }
     }
+  }
+
+  getRowUrl(row){
+    const url = "/watchlist/qualify/"+row.id;
+    console.log(url)
+    return url;
   }
 
   getUserCalifications(){
