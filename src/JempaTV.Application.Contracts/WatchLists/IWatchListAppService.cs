@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JempaTV.Series;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,11 @@ namespace JempaTV.WatchLists
 {
     public interface IWatchListAppService : IApplicationService
     {
-        Task AddSerieAsync(int serieId);
+        Task AddSerieAsync(int watchlistId, int serieId);
+
+        Task AddWatchlist(Guid IdUsuario);
+
+        Task<List<SerieDto>> GetSeriesAsync(Guid IdUsuario);
 
         Task<List<WatchListDto>> GetRecentChangesAsync();
 
