@@ -75,5 +75,13 @@ export class SerieService {
       },
       { apiName: this.apiName,...config });
 
+      addCalification = (calification:CalificationDto, config?: Partial<Rest.Config>) =>
+        this.restService.request<any, CalificationDto[]>({
+          method: 'POST',
+          url: `/api/app/serie/calification`,
+          body: calification,
+        },
+        { apiName: this.apiName,...config });
+
   constructor(private restService: RestService) {}
 }

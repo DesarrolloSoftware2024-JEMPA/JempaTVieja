@@ -15,6 +15,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,8 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
     AppRoutingModule,
     ThemeSharedModule,
     CoreModule,
-    ThemeBasicModule
+    ThemeBasicModule,
+    ReactiveFormsModule
   ],
   providers: [
     APP_ROUTE_PROVIDER,

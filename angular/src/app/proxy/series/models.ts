@@ -7,7 +7,7 @@ export interface CreateUpdateSerieDto {
   imdbID?: string;
 }
 
-export interface CalificationDto {
+export class CalificationDto {
   idSerie: number;
   valor: number;
   comentario?: string;
