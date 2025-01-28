@@ -1,21 +1,19 @@
-<div class="home">
+
   <div>    
       @if(!hasLoggedIn){
-      <h3 class="title">Bienvenido</h3>
+      <div class="title">
+        <p class="text-title" >JempaTV</p>
+        <a (click)="login()" class="px-4 btn btn-primary mb-4" style="margin-top: 100px;" role="button">
+          <i class="fa fa-sign-in"></i>
+          {{ 'AbpAccount::Login' | abpLocalization }}
+        </a>
+      </div>
+      
       <div class="information">
         <p>
-          Somos JempaTV, nos dedicamos a brindar un servicio de seguimiento para tus series y
-          peliculas favoritas. Aqui podras suscribirte y acceder a toda la informacion sobre
+          Ingresa o registrate para seguir tus series o peliculas favoritas
         </p>
       </div>
-
-      <p class="info-in">
-        Iniciar sesion o registrate para disfrutar tus series y peliculas favoritas
-      </p>
-      <a (click)="login()" class="px-4 btn btn-primary mb-4" role="button">
-        <i class="fa fa-sign-in"></i>
-        {{ 'AbpAccount::Login' | abpLocalization }}
-      </a>
       } @if(hasLoggedIn){
 
       
@@ -43,4 +41,4 @@
       }
     
   </div>
-</div>
+
