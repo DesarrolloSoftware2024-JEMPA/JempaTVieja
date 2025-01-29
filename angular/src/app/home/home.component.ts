@@ -6,7 +6,7 @@ import { register } from "swiper/element/bundle";
 
 
 
-register();
+
 
 @Component({
   selector: 'app-home',
@@ -33,8 +33,7 @@ export class HomeComponent implements OnInit {
     this.getSeriesList(this.imdbIds)
   }
 
-  
-
+ 
   login() {
     this.authService.navigateToLogin();
   }
