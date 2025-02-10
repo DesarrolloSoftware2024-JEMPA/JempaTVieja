@@ -1,5 +1,5 @@
 
-  
+  <div>
       @if(!hasLoggedIn){
         
           <div class="poster-cont"> 
@@ -33,24 +33,32 @@
         <button routerLink="/series">Buscar serie</button>
 
         <button routerLink="/watchlist">Mi Watchlist</button>
+        <section class="series-section">
+              <h2 class="series-section__title">Nuestras Series</h2>
+              <p class="series-section__description">
+                  Explora nuestra amplia colección de series. Encuentra tus favoritas y descubre nuevas recomendaciones.
+              </p>
 
-        <swiper-container style="width: 500px;" loop="true" autoplay  effect="coverflow" centeredSlides="true"
-        coverflowEffect="{
-          depth:500,
-          modifer:1,
-          slidesShadows: true,
-          rotate:0,
-          stretch:0}" 
-          navigation="{
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        }"
-        slidesPerView="auto">
-          <swiper-slide  *ngFor="let serie of series">
-            <h1> {{serie.title}}</h1>
-            <img src="{{serie.poster}}">
-          </swiper-slide>
-          </swiper-container>
-      }
-    
-  
+
+          <swiper-container loop="true"  autoplay effect="coverflow"  centeredSlides="true"
+          coverflowEffect="{
+            depth:500,
+            modifer:1,
+            slidesShadows: true,
+            rotate:0,
+            stretch:0}" 
+            navigation="{
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+          }"
+          slidesPerView="1.5"
+          spaceBetween:20>
+          
+            <swiper-slide  *ngFor="let serie of series">
+              <h1> {{serie.title}}</h1>
+              <img src="{{serie.poster}}">
+            </swiper-slide>
+            </swiper-container>
+          </section>
+          }
+      </div>
